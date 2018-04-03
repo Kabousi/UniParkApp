@@ -9,7 +9,7 @@
     </style>
 
     <style name="TextBox">
-        <item name="android:background">@drawable/TextBox</item>
+        <item name="android:background">@drawable/textbox</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_marginLeft">70dp</item>
         <item name="android:layout_marginRight">70dp</item>
@@ -18,7 +18,7 @@
     </style>
 
     <style name="LoginBtn">
-        <item name="android:background">@drawable/LoginBtn</item>
+        <item name="android:background">@drawable/loginbtn</item>
         <item name="android:layout_marginLeft">70dp</item>
         <item name="android:layout_marginRight">70dp</item>
         <item name="android:layout_marginTop">20dp</item>
