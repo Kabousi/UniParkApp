@@ -104,7 +104,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
-        android:background="clear"
+        android:background="#00000000"
         android:text="Tap Here"
         android:textColor="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"

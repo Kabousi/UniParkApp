@@ -35,9 +35,10 @@
     </style>
 
     <style name="button">
-        <item name="android:layout_width">172dp</item>
+        <item name="android:layout_width">150dp</item>
         <item name="android:height">50dp</item>
         <item name="android:background">@drawable/button</item>
+        <item name="android:textColor">#ffffff</item>
     </style>
 
 </resources>
