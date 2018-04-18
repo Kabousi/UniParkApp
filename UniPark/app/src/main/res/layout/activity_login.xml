@@ -88,14 +88,6 @@
         app:srcCompat="@drawable/_applogo" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="89dp"
-        android:layout_height="34dp"
-        android:text="Button"
-        tools:layout_editor_absoluteX="521dp"
-        tools:layout_editor_absoluteY="339dp" />
-
-    <Button
         android:id="@+id/button7"
         android:layout_width="84dp"
         android:layout_height="17dp"
