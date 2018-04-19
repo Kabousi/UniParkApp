@@ -91,7 +91,8 @@
         android:layout_gravity="start"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:menu="@menu/navigation_menu" />
+        app:menu="@menu/navigation_menu"
+        app:itemTextColor="@color/colorPrimary"/>
 
 
 </android.support.v4.widget.DrawerLayout>
