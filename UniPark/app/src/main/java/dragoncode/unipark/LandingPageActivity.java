@@ -72,7 +72,7 @@ public class LandingPageActivity extends AppCompatActivity implements View.OnCli
                 break;
 
             case R.id.btn_report:
-                intent = new Intent(this, ViewProfileActivity.class);
+                intent = new Intent(this, ActivityReportUser.class);
                 startActivity(intent);
                 break;
 

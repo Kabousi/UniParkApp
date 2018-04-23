@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".LandingPageActivity" />
         <activity android:name=".ViewProfileActivity" />
-        <activity android:name=".view_parking"></activity>
+        <activity android:name=".view_parking" />
+        <activity android:name=".ActivityReportUser"></activity>
     </application>
 
 </manifest>
