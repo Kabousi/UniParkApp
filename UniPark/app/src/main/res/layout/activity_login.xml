@@ -59,7 +59,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editText3" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnLogin"
         style="@style/LoginBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
