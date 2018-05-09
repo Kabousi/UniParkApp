@@ -64,6 +64,7 @@
 
         <EditText
             android:id="@+id/txtParkingName"
+            style="@style/TextEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -72,8 +73,7 @@
             android:layout_marginStart="8dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Parking Name"
-            style="@style/TextEdit"
+            android:text="AL001"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -98,6 +98,7 @@
 
         <EditText
             android:id="@+id/txtAccessLevel"
+            style="@style/TextEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -106,8 +107,7 @@
             android:layout_marginStart="8dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Access Level"
-            style="@style/TextEdit"
+            android:text="001"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -133,7 +133,7 @@
         <EditText
             android:id="@+id/txtLocation"
             style="@style/TextEdit"
-            android:layout_width="wrap_content"
+            android:layout_width="269dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
@@ -141,7 +141,7 @@
             android:layout_marginStart="8dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Location"
+            android:text="North Campus | Heinz Bentz"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -161,10 +161,9 @@
             android:text="Map"
             app:layout_constraintBottom_toTopOf="@+id/btnAddRequest"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.385"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/txtLocation"
-            app:layout_constraintTop_toBottomOf="@+id/lblLocation"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/txtAccessLevel" />
 
         <Button
             android:id="@+id/btnRequestParking"
@@ -176,6 +175,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="Request Parking"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -198,6 +198,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtLocation"
             app:layout_constraintVertical_bias="0.544" />
+
+        <Spinner
+            android:id="@+id/spnParkingName"
+            android:layout_width="209dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/txtParkingName"
+            app:layout_constraintTop_toBottomOf="@+id/lblParkingName" />
     </android.support.constraint.ConstraintLayout>
 
     <android.support.design.widget.NavigationView

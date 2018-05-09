@@ -3,6 +3,9 @@ package dragoncode.unipark;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -35,7 +38,6 @@ public class LandingPageActivity extends AppCompatActivity implements View.OnCli
         mToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
         btnViewProfile = (Button) findViewById(R.id.btn_profile);
         btnViewParking = (Button) findViewById(R.id.btn_parking);
@@ -77,8 +79,7 @@ public class LandingPageActivity extends AppCompatActivity implements View.OnCli
                 break;
 
             case R.id.btn_maps:
-                intent = new Intent(this, ViewProfileActivity.class);
-                startActivity(intent);
+
                 break;
         }
 
