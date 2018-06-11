@@ -14,11 +14,30 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import dragoncode.unipark.LandingPageActivity;
+
 
 public class Login extends Activity {
 
@@ -26,17 +45,12 @@ public class Login extends Activity {
     private EditText txtUserName;
     private EditText txtPassword;
     private ProgressBar progressBar;
+    private RequestQueue requestQueue;
 
-    /*
-     * Connection to data base test 1
-     *
-     * START
-     * */
+    String userName;
+    String password;
 
-    //Declare connection variables
-    private Connection con;
-    private String username, password, dbname, ip;
-    //End declare connection variables
+    //String API_URL = "Localhost:9000/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,106 +61,83 @@ public class Login extends Activity {
         txtUserName = (EditText) findViewById(R.id.txtUserName);
         txtPassword = (EditText) findViewById(R.id.txtPassword);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        requestQueue = Volley.newRequestQueue(this);
 
         progressBar.setVisibility(View.GONE);
-
-        /*
-         * Connection to data base test 1
-         **/
-
-        //Set connection variables
-        ip = "10.0.0.27";
-        dbname = "uniparkDB";
-        username = "MicrosoftAccount/k.esterhuizen.ke@gmail.com";
-        password = "";
-        //End set connection variables
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkLogin check = new checkLogin();
-                check.execute("");
+
+                login task = new login();
+                task.execute();
             }
         });
     }
-
     private void openActivity() {
         Intent intent = new Intent(this, LandingPageActivity.class);
         startActivity(intent);
     }
 
-    public class checkLogin extends AsyncTask<String, String, String> {
-        private String z = "";
-        private Boolean isSuccess = false;
+        class login extends AsyncTask<Void, Void, String> {
 
-        @Override
-        protected void onPreExecute(){
-            progressBar.setVisibility(View.VISIBLE);
-        }
+            private Exception exception;
 
-        @Override
-        protected String doInBackground(String... params) {
-            String userName = txtUserName.getText().toString();
-            String passWord = txtPassword.getText().toString();
+            protected void onPreExecute() {
+                progressBar.setVisibility(View.VISIBLE);
+            }
 
-            if (userName.equals("") || passWord.equals("")) {
-                z = "Please enter username and password";
-            } else {
+            protected String doInBackground(Void... urls) {
+
                 try {
-                    con = connectionclass(username, password, dbname, ip);
-                    if (con == null) {
-                        z = "Check internet connection";
-                    } else {
-                        String query = "SELECT * FROM Personel WHERE PersonelID ='s" + userName.toString() + "' AND PersonelPassword =" + passWord.toString();
-                        Statement stmt = con.createStatement();
-                        ResultSet rs = stmt.executeQuery(query);
-                        if (rs.next()) {
-                            openActivity();
-                            isSuccess = true;
-                            con.close();
-                        } else {
-                            z = "Incorrect Username/Password";
-                            isSuccess = false;
+                    URL url = new URL( "http://10.0.2.2:9000/personnel/login/s" + txtUserName.getText().toString());
+                    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                    try {
+                        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                        StringBuilder stringBuilder = new StringBuilder();
+                        String line;
+                        while ((line = bufferedReader.readLine()) != null) {
+                            stringBuilder.append(line).append("\n");
                         }
+                        bufferedReader.close();
+                        return stringBuilder.toString();
                     }
-                } catch (Exception ex) {
-                    isSuccess = false;
-                    z = ex.getMessage();
+                    finally{
+                        urlConnection.disconnect();
+                    }
+                }
+                catch(Exception e) {
+                    Log.e("ERROR", e.getMessage(), e);
+                    return null;
                 }
             }
-            return z;
-        }
 
-        @Override
-        protected void onPostExecute(String r){
-            progressBar.setVisibility(View.GONE);
-            Toast.makeText(Login.this, r, Toast.LENGTH_SHORT).show();
-            if(isSuccess){
-                Toast.makeText(Login.this, "Login Successfull", Toast.LENGTH_LONG).show();
+            protected void onPostExecute(String response) {
+                if(response == null) {
+                    response = "THERE WAS AN ERROR";
+                }
+                else if(response != null){
+                    try{
+                        JSONObject object = (JSONObject) new JSONTokener(response).nextValue();
+                        JSONArray objarry = object.getJSONArray("PersonnelPassword");
+                        password = objarry.getString(0);
+                    }
+                    catch (JSONException e){
+                        Log.e("Error", e.getMessage());
+                    }
+
+                    if(password == txtPassword.getText().toString()){
+                        openActivity();
+                    }
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Invalid Username/Password", Toast.LENGTH_LONG).show();
+                }
+                progressBar.setVisibility(View.GONE);
             }
         }
 
-    }
 
-
-    @SuppressLint("NewApi")
-    public Connection connectionclass(String user, String pass, String DB, String server) {
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-        Connection connection = null;
-        String ConnectionURL = null;
-        try {
-            Class.forName("net.sourceforge.jtds.jdbc,Driver");
-            ConnectionURL = "jdbc:jtds:sqlserver://" + server + DB + " ;user=" + user + " ;password" + pass + ";";
-            connection = DriverManager.getConnection(ConnectionURL);
-        } catch (ClassNotFoundException ex) {
-            Log.e("error here 1", ex.getMessage());
-        } catch (SQLException ex) {
-            Log.e("error here 2", ex.getMessage());
-        } catch (Exception ex) {
-            Log.e("error here 3", ex.getMessage());
-        }
-
-        return connection;
-    }
 }
+
+
