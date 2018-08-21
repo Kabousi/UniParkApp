@@ -26,10 +26,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -46,11 +55,6 @@ public class Login extends Activity {
     private EditText txtPassword;
     private ProgressBar progressBar;
     private RequestQueue requestQueue;
-
-    String userName;
-    String password;
-
-    //String API_URL = "Localhost:9000/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,74 +73,112 @@ public class Login extends Activity {
             @Override
             public void onClick(View v) {
 
-                login task = new login();
-                task.execute();
+                String facilityNo ="s" + txtUserName.getText().toString();
+                String password = txtPassword.getText().toString();
+                JSONObject data = new JSONObject();
+
+                try{
+                    data.put("facilityNo", facilityNo);
+                    data.put("password", password);
+                }
+                catch (JSONException e){
+                    e.printStackTrace();
+                }
+
+                if(data.length() > 0){
+                    login task = new login();
+                    task.execute(String.valueOf(data));
+                }
+                else{
+                    Toast.makeText(Login.this, "Please enter details.", Toast.LENGTH_SHORT).show();
+                }
+
+
+
+                //openActivity();
             }
         });
     }
-    private void openActivity() {
-        Intent intent = new Intent(this, LandingPageActivity.class);
-        startActivity(intent);
-    }
 
-        class login extends AsyncTask<Void, Void, String> {
 
-            private Exception exception;
+        class login extends AsyncTask<String, Void, String> {
+
 
             protected void onPreExecute() {
                 progressBar.setVisibility(View.VISIBLE);
             }
 
-            protected String doInBackground(Void... urls) {
+            protected String doInBackground(String... params) {
+                String urlstr = "http://10.0.2.2:9000" + "/personnel/login";
+                String jsonResponse = null;
+                String jsonData = params[0];
+                HttpURLConnection urlConnection = null;
+                BufferedReader reader = null;
 
-                try {
-                    URL url = new URL( "http://10.0.2.2:9000/personnel/login/s" + txtUserName.getText().toString());
-                    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                    try {
-                        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-                        StringBuilder stringBuilder = new StringBuilder();
-                        String line;
-                        while ((line = bufferedReader.readLine()) != null) {
-                            stringBuilder.append(line).append("\n");
-                        }
-                        bufferedReader.close();
-                        return stringBuilder.toString();
+                try{
+                    URL url = new URL(urlstr);
+                    urlConnection = (HttpURLConnection) url.openConnection();
+                    urlConnection.setDoOutput(true);
+
+                    urlConnection.setRequestMethod("POST");
+                    urlConnection.setRequestProperty("Content-Type", "application/json");
+                    urlConnection.setRequestProperty("Accept", "application/json");
+
+                    Writer writer = new BufferedWriter(new OutputStreamWriter(urlConnection.getOutputStream(), "UTF-8"));
+                    writer.write(jsonData);
+                    writer.close();
+
+                    InputStream inputStream = urlConnection.getInputStream();
+                    StringBuffer buffer = new StringBuffer();
+                    if(inputStream == null){
+                        return null;
                     }
-                    finally{
+                    reader = new BufferedReader(new InputStreamReader(inputStream));
+
+                    String inputLine;
+
+                    while((inputLine = reader.readLine()) != null)
+                        buffer.append(inputLine);
+
+                    if (buffer.length() == 0){
+                        return null;
+                    }
+                    jsonResponse = buffer.toString();
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
+                finally {
+                    if(urlConnection != null){
                         urlConnection.disconnect();
                     }
+                    if(reader != null){
+                        try{
+                            reader.close();
+                        }
+                        catch (final IOException e){
+                            e.printStackTrace();
+                        }
+                    }
                 }
-                catch(Exception e) {
-                    Log.e("ERROR", e.getMessage(), e);
-                    return null;
-                }
+               return jsonResponse;
             }
 
-            protected void onPostExecute(String response) {
-                if(response == null) {
-                    response = "THERE WAS AN ERROR";
-                }
-                else if(response != null){
-                    try{
-                        JSONObject object = (JSONObject) new JSONTokener(response).nextValue();
-                        JSONArray objarry = object.getJSONArray("PersonnelPassword");
-                        password = objarry.getString(0);
-                    }
-                    catch (JSONException e){
-                        Log.e("Error", e.getMessage());
-                    }
-
-                    if(password == txtPassword.getText().toString()){
-                        openActivity();
-                    }
-                }
-                else{
-                    Toast.makeText(getApplicationContext(), "Invalid Username/Password", Toast.LENGTH_LONG).show();
-                }
+            @Override
+            protected void onPostExecute(String jsonResponse){
                 progressBar.setVisibility(View.GONE);
+                String response = jsonResponse;
+                if(response.equals("\"Login Successful!\"")) {
+                    openActivity();
+                }
             }
         }
 
+    private void openActivity() {
+        String userName = txtUserName.getText().toString();
+        Intent intent = new Intent(this, LandingPageActivity.class);
+        intent.putExtra("ID", userName);
+        startActivity(intent);
+    }
 
 }
 
