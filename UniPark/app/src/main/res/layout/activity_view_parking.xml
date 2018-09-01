@@ -130,7 +130,7 @@
             app:layout_constraintTop_toBottomOf="@+id/txtAccessLevel" />
 
         <EditText
-            android:id="@+id/txtLocation"
+            android:id="@+id/txtReqLocation"
             style="@style/TextEdit"
             android:layout_width="269dp"
             android:layout_height="wrap_content"
@@ -150,17 +150,15 @@
             style="@style/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="Map"
-            app:layout_constraintBottom_toTopOf="@+id/btnAddRequest"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/txtLocation"
+            app:layout_constraintStart_toEndOf="@+id/txtReqLocation"
             app:layout_constraintTop_toBottomOf="@+id/txtAccessLevel" />
 
         <Button
@@ -177,48 +175,17 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtLocation"
+            app:layout_constraintTop_toBottomOf="@+id/txtReqLocation"
             app:layout_constraintVertical_bias="0.563" />
 
-        <Button
-            android:id="@+id/btnAddRequest"
-            style="@style/button"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="Send Request"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtLocation"
-            app:layout_constraintVertical_bias="0.544" />
-
-        <Spinner
-            android:id="@+id/spnParkingName"
-            android:layout_width="209dp"
-            android:layout_height="45dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
-            android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/txtParkingName"
-            app:layout_constraintTop_toBottomOf="@+id/lblParkingName" />
     </android.support.constraint.ConstraintLayout>
 
     <android.support.design.widget.NavigationView
+        android:id="@+id/nav_ViewParking"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        app:menu="@menu/navigation_menu"
-        android:id="@+id/parking_nav_drawer"
+        android:layout_gravity="start"
         app:itemTextColor="@color/colorPrimary"
-        android:layout_gravity="start">
-    </android.support.design.widget.NavigationView>
+        app:menu="@menu/navigation_menu"></android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>

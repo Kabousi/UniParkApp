@@ -11,9 +11,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class ParkingAdapter extends ArrayAdapter<parking_name_item> {
+public class ParkingAdapter extends ArrayAdapter<String> {
 
-    public ParkingAdapter(Context context, ArrayList<parking_name_item> parkinglist){
+    public ParkingAdapter(Context context, ArrayList<String> parkinglist){
         super(context, 0,parkinglist);
         }
 
@@ -35,9 +35,9 @@ public class ParkingAdapter extends ArrayAdapter<parking_name_item> {
 
         TextView parkingname = convertView.findViewById(R.id.textView3);
 
-        parking_name_item currentItem = getItem(position);
+        String currentItem = getItem(position);
 
-        parkingname.setText("AL001");
+        parkingname.setText(currentItem.toString());
 
         return convertView;
     }

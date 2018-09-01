@@ -2,5 +2,6 @@
     <string name="app_name">UniPark</string>
     <string name="Open">Open</string>
     <string name="Close">Close</string>
-    <string name="url">http://10.0.2.2:9000</string>
+    <string name="url">"http://10.0.2.2:9000"</string>
+    <string name="title_activity_request_parking">activity_request_parking</string>
 </resources>
