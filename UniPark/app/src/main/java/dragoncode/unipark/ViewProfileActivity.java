@@ -1,7 +1,10 @@
 package dragoncode.unipark;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -19,12 +22,19 @@ public class ViewProfileActivity extends AppCompatActivity {
     private DrawerLayout mdrawerlayout;
     private ActionBarDrawerToggle mToggle;
 
+    private Intent intent;
+
+    private String id;
+
     private EditText EmpNum;
     private EditText Name;
     private EditText Email;
     private EditText PhoneNum;
 
     private Button btnEditProfile;
+
+    private NavigationView nav;
+
     private String[] details = new String[5];
 
     @Override
@@ -69,6 +79,55 @@ public class ViewProfileActivity extends AppCompatActivity {
         PhoneNum = (EditText) findViewById(R.id.txtPhoneNum);
         PhoneNum.setEnabled(false);
 
+        nav = (NavigationView) findViewById(R.id.nav_ViewProfile);
+        id = getIntent().getStringExtra("ID");
+
+        nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()){
+                    case R.id.home_screen:
+                        intent = new Intent(ViewProfileActivity.this, dragoncode.unipark.LandingPageActivity.class);
+                        intent.putExtra("ID", id);
+                        startActivity(intent);
+                        break;
+
+                    case R.id.view_profile:
+                        intent = new Intent(ViewProfileActivity.this, dragoncode.unipark.ViewProfileActivity.class);
+                        intent.putExtra("ID", id);
+                        startActivity(intent);
+                        break;
+
+                    case R.id.view_parking:
+                        intent = new Intent(ViewProfileActivity.this, dragoncode.unipark.view_parking.class);
+                        intent.putExtra("ID", id);
+                        startActivity(intent);
+                        break;
+
+                    case R.id.request_parking:
+                        intent = new Intent(ViewProfileActivity.this, dragoncode.unipark.activity_request_parking.class);
+                        intent.putExtra("ID", id);
+                        startActivity(intent);
+                        break;
+
+                    case R.id.report_user:
+                        intent = new Intent(ViewProfileActivity.this, dragoncode.unipark.ActivityReportUser.class);
+                        intent.putExtra("ID", id);
+                        startActivity(intent);
+                        break;
+
+                    case R.id.maps:
+                        intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setPackage("com.google.android.apps.maps");
+                        if(intent.resolveActivity(getPackageManager()) != null)
+                            startActivity(intent);
+                        break;
+                }
+                return true;
+            }
+        });
+
     }
 
     @Override
@@ -93,7 +152,7 @@ public class ViewProfileActivity extends AppCompatActivity {
         protected Void doInBackground(Void... arg0) {
 
                 HttpHandler sh = new HttpHandler();
-                String url = "http://10.0.2.2:9000" + "/personnel/specified/s" + getIntent().getStringExtra("ID");
+                String url = getString(R.string.url) + "/personnel/specified/s" + getIntent().getStringExtra("ID");
                 String jsonstr = sh.makeServiceCall(url);
 
                 if (jsonstr != null) {

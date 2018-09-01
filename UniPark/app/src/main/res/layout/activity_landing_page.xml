@@ -86,13 +86,14 @@
 
     <android.support.design.widget.NavigationView
 
+        android:id="@+id/nav_landingPage"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        app:itemTextColor="@color/colorPrimary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:menu="@menu/navigation_menu"
-        app:itemTextColor="@color/colorPrimary"/>
+        app:menu="@menu/navigation_menu" />
 
 
 </android.support.v4.widget.DrawerLayout>

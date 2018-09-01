@@ -1,14 +1,15 @@
 package dragoncode.unipark;
 
-import android.content.ReceiverCallNotAllowedException;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,34 +26,27 @@ public class view_parking extends AppCompatActivity {
 
     private DrawerLayout mdrawerlayout;
     private ActionBarDrawerToggle mToggle;
+    private NavigationView nav;
+
+    private Intent intent;
 
     private Button btnRequest;
-    private Button btnSendRequast;
-
-    private ArrayList<parking_name_item> mParkingNameList;
-    private ParkingAdapter mAdapter;
 
     private EditText txtParkingName;
     private EditText txtParkingAccess;
     private EditText txtLocation;
 
-    private TextView lblAssignedParking;
-    private TextView lblRequestParking;
-    private Spinner spnParkingSpinner;
-
-    private String[] details = new String[3];
+    private String id;
+    private String[] details = new String[5];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_parking);
 
-        btnSendRequast = (Button) findViewById(R.id.btnAddRequest);
-
-        lblAssignedParking = (TextView) findViewById(R.id.lblAssignedParking);
-        lblRequestParking = (TextView) findViewById(R.id.lblRequestParking);
-
-        spnParkingSpinner = (Spinner) findViewById(R.id.spnParkingName);
+        txtLocation = (EditText)findViewById(R.id.txtReqLocation);
+        txtParkingAccess = (EditText)findViewById(R.id.txtAccessLevel);
+        txtParkingName = (EditText)findViewById(R.id.txtParkingName);
 
         mdrawerlayout = (DrawerLayout) findViewById(R.id.view_parking);
         mToggle = new ActionBarDrawerToggle(this, mdrawerlayout, R.string.Open, R.string.Close);
@@ -62,54 +56,64 @@ public class view_parking extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        txtParkingName = (EditText) findViewById(R.id.txtParkingName);
-        txtParkingName.setEnabled(false);
-        txtParkingAccess = (EditText) findViewById(R.id.txtAccessLevel);
-        txtParkingAccess.setEnabled(false);
-        txtLocation = (EditText) findViewById(R.id.txtLocation);
-        txtLocation.setEnabled(false);
-
         new ParkingInfo().execute();
 
         btnRequest = (Button) findViewById(R.id.btnRequestParking);
         btnRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtParkingName.setVisibility(View.INVISIBLE);
-
-                btnRequest.setVisibility(View.INVISIBLE);
-                btnSendRequast.setVisibility(View.VISIBLE);
-
-                lblAssignedParking.setVisibility(View.INVISIBLE);
-                lblRequestParking.setVisibility(View.VISIBLE);
-
-                spnParkingSpinner.setVisibility(View.VISIBLE);
+                openActivity();
             }
         });
 
-        InitList();
+        nav = (NavigationView) findViewById(R.id.nav_ViewParking);
+        id  =getIntent().getStringExtra("ID");
 
-        mAdapter = new ParkingAdapter(this, mParkingNameList);
-        spnParkingSpinner.setAdapter(mAdapter);
-
-        spnParkingSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                parking_name_item clickeditem = (parking_name_item) parent.getItemAtPosition(position);
-                String clickedParking = clickeditem.getparkingNameItem();
-            }
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+                switch (item.getItemId()){
+                    case R.id.home_screen:
+                        intent = new Intent(view_parking.this, dragoncode.unipark.LandingPageActivity.class);
+                        intent.putExtra("ID", id);
+                        startActivity(intent);
+                        break;
 
+                    case R.id.view_profile:
+                        intent = new Intent(view_parking.this, dragoncode.unipark.ViewProfileActivity.class);
+                        intent.putExtra("ID", id);
+                        startActivity(intent);
+                        break;
+
+                    case R.id.view_parking:
+                        intent = new Intent(view_parking.this, dragoncode.unipark.view_parking.class);
+                        intent.putExtra("ID", id);
+                        startActivity(intent);
+                        break;
+
+                    case R.id.request_parking:
+                        intent = new Intent(view_parking.this, dragoncode.unipark.activity_request_parking.class);
+                        intent.putExtra("ID", id);
+                        startActivity(intent);
+                        break;
+
+                    case R.id.report_user:
+                        intent = new Intent(view_parking.this, dragoncode.unipark.ActivityReportUser.class);
+                        intent.putExtra("ID", id);
+                        startActivity(intent);
+                        break;
+
+                    case R.id.maps:
+                        intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setPackage("com.google.android.apps.maps");
+                        if(intent.resolveActivity(getPackageManager()) != null)
+                            startActivity(intent);
+                        break;
+                }
+                return true;
             }
         });
-
-    }
-
-    private void InitList(){
-        mParkingNameList = new ArrayList<>();
-        mParkingNameList.add(new parking_name_item("AL001"));
     }
 
     @Override
@@ -122,27 +126,28 @@ public class view_parking extends AppCompatActivity {
     class ParkingInfo extends AsyncTask<Void, Void, Void>{
 
         @Override
-        protected void onPreExecute(){
-            txtLocation.setText("");
-            txtParkingAccess.setText("");
-            txtParkingName.setText("");
+        protected void onPreExecute() {
+            super.onPreExecute();
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
 
             HttpHandler sh = new HttpHandler();
-            String url = "http://10.0.2.2:9000" + "/parking/assigned/s" + getIntent().getStringExtra("ID");
+            String url = getString(R.string.url) + "/parking/assigned/s" + getIntent().getStringExtra("ID");
             String jsonstr = sh.makeServiceCall(url);
 
                 if(jsonstr != null){
                     try{
                         JSONObject object = new JSONObject(jsonstr);
-                        details[0] = object.getString("ParkingName");
-                        details[1] = object.getString("ParkingAccessLevel");
-                        details[2] = object.getString("Location");
+                        details[0] = object.getString("PersonelID");
+                        details[1] = object.getString("ParkingName");
+                        details[2] = object.getString("ParkingAccessLevel");
+                        details[3] = object.getString("Location");
+                        details[4] = object.getString("AreaCoordinate");
+
                     } catch (final JSONException e) {
-                        e.printStackTrace();
+                        Toast.makeText(view_parking.this, e.toString(), Toast.LENGTH_SHORT).show();
                     }
                 }
             return null;
@@ -151,9 +156,15 @@ public class view_parking extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void result){
             super.onPostExecute(result);
-            txtParkingName.setText(details[0]);
-            txtParkingAccess.setText(details[1]);
-            txtLocation.setText(details[2]);
+            txtParkingName.setText(details[1]);
+            txtParkingAccess.setText(details[2]);
+            txtLocation.setText(details[3]);
         }
+    }
+
+    void openActivity(){
+        Intent intent = new Intent(this, activity_request_parking.class);
+        intent.putExtra("ID", getIntent().getStringExtra("ID"));
+        startActivity(intent);
     }
 }

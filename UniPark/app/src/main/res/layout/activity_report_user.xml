@@ -166,11 +166,11 @@
     </android.support.constraint.ConstraintLayout>
 
     <android.support.design.widget.NavigationView
+        android:id="@+id/nav_reportUser"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        app:menu="@menu/navigation_menu"
-        app:itemTextColor="@color/colorAccent">
-    </android.support.design.widget.NavigationView>
+        app:itemTextColor="@color/colorAccent"
+        app:menu="@menu/navigation_menu"></android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>

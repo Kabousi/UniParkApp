@@ -2,9 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="dragoncode.unipark">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:allowBackup="true"
@@ -23,7 +23,10 @@
         <activity android:name=".LandingPageActivity" />
         <activity android:name=".ViewProfileActivity" />
         <activity android:name=".view_parking" />
-        <activity android:name=".ActivityReportUser"></activity>
+        <activity android:name=".ActivityReportUser" />
+        <activity
+            android:name=".activity_request_parking"
+            android:label="@string/title_activity_request_parking"></activity>
     </application>
 
 </manifest>
