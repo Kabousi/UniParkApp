@@ -17,6 +17,18 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+import javax.net.ssl.HttpsURLConnection;
+
 public class ViewProfileActivity extends AppCompatActivity {
 
     private DrawerLayout mdrawerlayout;
@@ -25,6 +37,7 @@ public class ViewProfileActivity extends AppCompatActivity {
     private Intent intent;
 
     private String id;
+    private String name, email, phoneNummber, employeeNum;
 
     private EditText EmpNum;
     private EditText Name;
@@ -56,16 +69,44 @@ public class ViewProfileActivity extends AppCompatActivity {
         btnEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    EmpNum = (EditText) findViewById(R.id.txtEmpNum);
-                    EmpNum.setEnabled(true);
-                    Name = (EditText) findViewById(R.id.txtName);
-                    Name.setEnabled(true);
+
+                if(btnEditProfile.getText().equals("Edit Profile")){
                     Email = (EditText) findViewById(R.id.txtEmail);
                     Email.setEnabled(true);
                     PhoneNum = (EditText) findViewById(R.id.txtPhoneNum);
                     PhoneNum.setEnabled(true);
 
                     btnEditProfile.setText("Update");
+                }
+                else if(btnEditProfile.getText().equals("Update")){
+                    Email = (EditText) findViewById(R.id.txtEmail);
+                    Email.setEnabled(false);
+                    PhoneNum = (EditText) findViewById(R.id.txtPhoneNum);
+                    PhoneNum.setEnabled(false);
+
+                    name = Name.getText().toString();
+                    email = Email.getText().toString();
+                    phoneNummber = PhoneNum.getText().toString();
+                    employeeNum = "s" + getIntent().getStringExtra("ID");
+                    JSONObject data = new JSONObject();
+
+                    try{
+                        data.put("PersonnelID", employeeNum);
+                        data.put("PersonnelPhoneNumber", phoneNummber);
+                        data.put("PersonnelEmail", email);
+                    }
+                    catch (JSONException e){
+                        e.printStackTrace();
+                    }
+
+                    if(data.length() > 0){
+                        new UpdateUserInfo().execute(String.valueOf(data));
+                    }
+                    else{
+                        Toast.makeText(ViewProfileActivity.this, "Please enter details.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
 
             }
         });
@@ -141,14 +182,6 @@ public class ViewProfileActivity extends AppCompatActivity {
         private Exception exception;
 
         @Override
-        protected void onPreExecute() {
-           /* EmpNum.setText("");
-            Name.setText("");
-            Email.setText("");
-            PhoneNum.setText("");*/
-        }
-
-        @Override
         protected Void doInBackground(Void... arg0) {
 
                 HttpHandler sh = new HttpHandler();
@@ -184,6 +217,73 @@ public class ViewProfileActivity extends AppCompatActivity {
             PhoneNum.setText(details[1]);
             Email.setText(details[2]);
             EmpNum.setText(getIntent().getStringExtra("ID"));
+        }
+    }
+
+    class UpdateUserInfo extends AsyncTask<String, Void, String> {
+
+        protected String doInBackground(String... params) {
+            String urlstr = getString(R.string.url) + "/personnel/update";
+            String jsonResponse = null;
+            String jsonData = params[0];
+            HttpURLConnection urlConnection = null;
+            BufferedReader reader = null;
+
+            try{
+                URL url = new URL(urlstr);
+                urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.setDoOutput(true);
+
+                urlConnection.setRequestMethod("PUT");
+                urlConnection.setRequestProperty("Content-Type", "application/json");
+                urlConnection.setRequestProperty("Accept", "application/json");
+
+                Writer writer = new BufferedWriter(new OutputStreamWriter(urlConnection.getOutputStream(), "UTF-8"));
+                writer.write(jsonData);
+                writer.close();
+
+                InputStream inputStream = urlConnection.getInputStream();
+                StringBuffer buffer = new StringBuffer();
+                if(inputStream == null){
+                    return null;
+                }
+                reader = new BufferedReader(new InputStreamReader(inputStream));
+
+                String inputLine;
+
+                while((inputLine = reader.readLine()) != null)
+                    buffer.append(inputLine);
+
+                if (buffer.length() == 0){
+                    return null;
+                }
+                jsonResponse = buffer.toString();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+            finally {
+                if(urlConnection != null){
+                    urlConnection.disconnect();
+                }
+                if(reader != null){
+                    try{
+                        reader.close();
+                    }
+                    catch (final IOException e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+            return jsonResponse;
+        }
+
+        @Override
+        protected void onPostExecute(String jsonResponse){
+            Email = (EditText) findViewById(R.id.txtEmail);
+            Email.setEnabled(false);
+            PhoneNum = (EditText) findViewById(R.id.txtPhoneNum);
+            PhoneNum.setEnabled(false);
+            btnEditProfile.setText("Edit Profile");
         }
     }
 }
