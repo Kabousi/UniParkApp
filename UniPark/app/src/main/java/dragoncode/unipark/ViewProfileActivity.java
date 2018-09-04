@@ -226,12 +226,12 @@ public class ViewProfileActivity extends AppCompatActivity {
             String urlstr = getString(R.string.url) + "/personnel/update";
             String jsonResponse = null;
             String jsonData = params[0];
-            HttpURLConnection urlConnection = null;
+            HttpsURLConnection urlConnection = null;
             BufferedReader reader = null;
 
             try{
                 URL url = new URL(urlstr);
-                urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection = (HttpsURLConnection) url.openConnection();
                 urlConnection.setDoOutput(true);
 
                 urlConnection.setRequestMethod("PUT");

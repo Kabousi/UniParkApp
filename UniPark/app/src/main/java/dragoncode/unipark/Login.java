@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -15,6 +16,7 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -26,6 +28,7 @@ import java.io.Writer;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import javax.net.ssl.HttpsURLConnection;
 
 
 public class Login extends Activity {
@@ -33,8 +36,8 @@ public class Login extends Activity {
     private Button btnLogin;
     private EditText txtUserName;
     private EditText txtPassword;
+    private TextView showUserName, showPassword;
     private ProgressBar progressBar;
-    private RequestQueue requestQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +47,9 @@ public class Login extends Activity {
         btnLogin = (Button) findViewById(R.id.btnLogin);
         txtUserName = (EditText) findViewById(R.id.txtUserName);
         txtPassword = (EditText) findViewById(R.id.txtPassword);
+        showUserName = (TextView) findViewById(R.id.lblShowUsername);
+        showPassword = (TextView) findViewById(R.id.lblShowPassword);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        requestQueue = Volley.newRequestQueue(this);
-
         progressBar.setVisibility(View.GONE);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -56,21 +59,33 @@ public class Login extends Activity {
                 String facilityNo ="s" + txtUserName.getText().toString();
                 String password = txtPassword.getText().toString();
                 JSONObject data = new JSONObject();
-
-                try{
-                    data.put("facilityNo", facilityNo);
-                    data.put("password", password);
-                }
-                catch (JSONException e){
-                    e.printStackTrace();
+                if(!txtUserName.getText().toString().equals("") && !txtPassword.getText().toString().equals("")) {
+                    try {
+                        data.put("facilityNo", facilityNo);
+                        data.put("password", password);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
 
                 if(data.length() > 0){
                     login task = new login();
                     task.execute(String.valueOf(data));
                 }
-                else{
-                    Toast.makeText(Login.this, "Please enter details.", Toast.LENGTH_SHORT).show();
+                else if(txtUserName.getText().toString().equals("") && txtPassword.getText().toString().equals("")){
+                    Toast.makeText(Login.this, "Please enter user details.", Toast.LENGTH_SHORT).show();
+                    showPassword.setVisibility(View.VISIBLE);
+                    showUserName.setVisibility(View.VISIBLE);
+                }
+                else if(txtUserName.getText().toString().equals("")){
+                    Toast.makeText(Login.this, "Please enter student/staff number.", Toast.LENGTH_SHORT).show();
+                    showUserName.setVisibility(View.VISIBLE);
+                    showPassword.setVisibility(View.INVISIBLE);
+                }
+                else if(txtPassword.getText().toString().equals("")){
+                    Toast.makeText(Login.this, "Please enter password", Toast.LENGTH_SHORT).show();
+                    showPassword.setVisibility(View.VISIBLE);
+                    showUserName.setVisibility(View.INVISIBLE);
                 }
 
 
@@ -92,12 +107,12 @@ public class Login extends Activity {
                 String urlstr = getString(R.string.url) + "/personnel/login";
                 String jsonResponse = null;
                 String jsonData = params[0];
-                HttpURLConnection urlConnection = null;
+                HttpsURLConnection urlConnection = null;
                 BufferedReader reader = null;
 
                 try{
                     URL url = new URL(urlstr);
-                    urlConnection = (HttpURLConnection) url.openConnection();
+                    urlConnection = (HttpsURLConnection) url.openConnection();
                     urlConnection.setDoOutput(true);
 
                     urlConnection.setRequestMethod("POST");

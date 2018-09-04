@@ -36,6 +36,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.jar.JarEntry;
 
+import javax.net.ssl.HttpsURLConnection;
+
 public class activity_request_parking extends AppCompatActivity implements OnItemSelectedListener {
 
     private DrawerLayout mdrawerLayout;
@@ -284,12 +286,12 @@ public class activity_request_parking extends AppCompatActivity implements OnIte
             String urlstr = getString(R.string.url) + "/request-parking";
             String jsonResponse = null;
             String jsonData = params[0];
-            HttpURLConnection urlConnection = null;
+            HttpsURLConnection urlConnection = null;
             BufferedReader reader = null;
 
             try{
                 URL url = new URL(urlstr);
-                urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection = (HttpsURLConnection) url.openConnection();
                 urlConnection.setDoOutput(true);
 
                 urlConnection.setRequestMethod("POST");

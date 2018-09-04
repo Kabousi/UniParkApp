@@ -63,7 +63,8 @@
             app:layout_constraintTop_toBottomOf="@+id/lblRegistration" />
 
         <TextView
-            android:id="@+id/lblParkingArea"
+            android:id="@+id/lblDesc"
+            style="@style/TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -71,62 +72,28 @@
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="28dp"
-            android:text="Parking Area"
-            style="@style/TextView"
+            android:text="Report Description"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.024"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtRegistration" />
 
         <EditText
-            android:id="@+id/txtParkingArea"
-            android:layout_width="wrap_content"
+            android:id="@+id/txtReportDesc"
+            style="@style/TextEdit"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:ems="10"
-            android:hint="Parking Area"
+            android:hint="Description"
             android:inputType="textPersonName"
-            style="@style/TextEdit"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblParkingArea" />
-
-        <TextView
-            android:id="@+id/lblParkingNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="28dp"
-            android:text="Parking Number"
-            style="@style/TextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.029"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtParkingArea" />
-
-        <EditText
-            android:id="@+id/txtParkingNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
-            android:ems="10"
-            android:hint="Parking Number"
-            android:inputType="textPersonName"
-            style="@style/TextEdit"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblParkingNumber" />
+            app:layout_constraintTop_toBottomOf="@+id/lblDesc" />
 
         <Button
             android:id="@+id/btnCamera"
@@ -140,15 +107,15 @@
             android:layout_marginStart="8dp"
             android:text="Camera"
             android:textColor="@color/colorPrimary"
-            app:layout_constraintBottom_toTopOf="@+id/lblParkingArea"
+            app:layout_constraintBottom_toTopOf="@+id/lblDesc"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/txtRegistration"
             app:layout_constraintTop_toBottomOf="@+id/lblRegistration"
             app:layout_constraintVertical_bias="0.0" />
 
         <Button
             android:id="@+id/btnSubmitReport"
+            style="@style/button"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
@@ -157,11 +124,10 @@
             android:layout_marginTop="8dp"
             android:text="Submit"
             android:textColor="@color/colorPrimary"
-            style="@style/button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtParkingNumber" />
+            app:layout_constraintTop_toBottomOf="@+id/txtReportDesc" />
 
     </android.support.constraint.ConstraintLayout>
 
