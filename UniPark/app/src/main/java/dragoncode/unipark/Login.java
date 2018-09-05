@@ -1,7 +1,10 @@
 package dragoncode.unipark;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -11,12 +14,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -25,7 +24,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
-import java.net.HttpURLConnection;
 import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -43,6 +41,25 @@ public class Login extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        boolean connected;
+        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
+            connected = true;
+        }
+        else
+            connected = false;
+
+        if(connected == false){
+            Toast.makeText(Login.this, "Check Internet Connection.", Toast.LENGTH_LONG).show();
+            txtUserName.setEnabled(false);
+            txtPassword.setEnabled(false);
+        }
+        else if(connected == true){
+            txtUserName.setEnabled(true);
+            txtPassword.setEnabled(true);
+        }
 
         btnLogin = (Button) findViewById(R.id.btnLogin);
         txtUserName = (EditText) findViewById(R.id.txtUserName);
@@ -87,10 +104,6 @@ public class Login extends Activity {
                     showPassword.setVisibility(View.VISIBLE);
                     showUserName.setVisibility(View.INVISIBLE);
                 }
-
-
-
-                //openActivity();
             }
         });
     }
@@ -162,8 +175,21 @@ public class Login extends Activity {
             protected void onPostExecute(String jsonResponse){
                 progressBar.setVisibility(View.GONE);
                 String response = jsonResponse;
-                if(response.equals("\"Login Successful!\"")) {
-                    openActivity();
+                if(jsonResponse != null){
+                    if(response.equals("\"Login Successful!\"")) {
+                        openActivity();
+                        txtUserName.setText("");
+                        txtPassword.setText("");
+                        showUserName.setVisibility(View.INVISIBLE);
+                        showPassword.setVisibility(View.INVISIBLE);
+                    }
+                }
+                else {
+                    Toast.makeText(Login.this, "Invalid Username/Password", Toast.LENGTH_LONG).show();
+                    txtUserName.setText("");
+                    txtPassword.setText("");
+                    showUserName.setVisibility(View.INVISIBLE);
+                    showPassword.setVisibility(View.INVISIBLE);
                 }
             }
         }
