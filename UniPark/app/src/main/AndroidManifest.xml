@@ -5,6 +5,11 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera"
+        android:required="false"/>
+
+    <meta-data android:name="com.google.android.gms.vision.DEPENDENCIES" android:value="ocr"/>
 
     <application
         android:allowBackup="true"
@@ -13,7 +18,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Login">
+        <activity android:name=".Login"
+            android:windowSoftInputMode="stateHidden|adjustResize">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,7 +28,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".LandingPageActivity" />
-        <activity android:name=".ViewProfileActivity" />
+        <activity android:name=".ViewProfileActivity"
+            android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".view_parking" />
         <activity android:name=".ActivityReportUser" />
         <activity
