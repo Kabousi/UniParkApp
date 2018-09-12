@@ -23,7 +23,7 @@ public class HttpHandler {
         String response = null;
         try {
             URL url = new URL(reqUrl);
-            HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             // read the response
             InputStream in = new BufferedInputStream(conn.getInputStream());

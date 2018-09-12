@@ -10,8 +10,10 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -26,6 +28,8 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -44,6 +48,10 @@ public class ViewProfileActivity extends AppCompatActivity {
     private EditText Email;
     private EditText PhoneNum;
 
+    private TextView lblShowEmail, lblEmailRequired;
+    private TextView lblShowPhone, lblPhoneRequired;
+    private TextView lblShowRequired;
+
     private Button btnEditProfile;
 
     private NavigationView nav;
@@ -56,6 +64,19 @@ public class ViewProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_profile);
 
         new GetPersonDetails().execute();
+
+        lblShowPhone = (TextView) findViewById(R.id.lblShowPhone);
+        lblShowEmail = (TextView) findViewById(R.id.lblShowEmail);
+        lblEmailRequired = (TextView) findViewById(R.id.lblEmailRequired);
+        lblPhoneRequired = (TextView) findViewById(R.id.lblPhoneRequired);
+        lblShowRequired = (TextView) findViewById(R.id.lblShowRequired);
+
+        lblEmailRequired.setVisibility(View.INVISIBLE);
+        lblPhoneRequired.setVisibility(View.INVISIBLE);
+        lblShowRequired.setVisibility(View.INVISIBLE);
+        lblShowPhone.setVisibility(View.INVISIBLE);
+        lblShowEmail.setVisibility(View.INVISIBLE);
+        lblShowPhone.setVisibility(View.INVISIBLE);
 
         mdrawerlayout = (DrawerLayout) findViewById(R.id.view_profile);
         mToggle = new ActionBarDrawerToggle(this, mdrawerlayout, R.string.Open, R.string.Close);
@@ -70,19 +91,28 @@ public class ViewProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                lblShowEmail.setText("Invalid Format*");
+
                 if(btnEditProfile.getText().equals("Edit Profile")){
                     Email = (EditText) findViewById(R.id.txtEmail);
                     Email.setEnabled(true);
                     PhoneNum = (EditText) findViewById(R.id.txtPhoneNum);
                     PhoneNum.setEnabled(true);
 
+                    lblEmailRequired.setVisibility(View.VISIBLE);
+                    lblPhoneRequired.setVisibility(View.VISIBLE);
+                    lblShowRequired.setVisibility(View.VISIBLE);
+
                     btnEditProfile.setText("Update");
                 }
                 else if(btnEditProfile.getText().equals("Update")){
                     Email = (EditText) findViewById(R.id.txtEmail);
-                    Email.setEnabled(false);
                     PhoneNum = (EditText) findViewById(R.id.txtPhoneNum);
                     PhoneNum.setEnabled(false);
+                    Email.setEnabled(false);
+
+                    lblShowPhone.setVisibility(View.INVISIBLE);
+                    lblShowEmail.setVisibility(View.INVISIBLE);
 
                     name = Name.getText().toString();
                     email = Email.getText().toString();
@@ -90,24 +120,94 @@ public class ViewProfileActivity extends AppCompatActivity {
                     employeeNum = "s" + getIntent().getStringExtra("ID");
                     JSONObject data = new JSONObject();
 
-                    try{
-                        data.put("PersonnelID", employeeNum);
-                        data.put("PersonnelPhoneNumber", phoneNummber);
-                        data.put("PersonnelEmail", email);
-                    }
-                    catch (JSONException e){
-                        e.printStackTrace();
-                    }
+                    String[] parts = email.split("@");
 
-                    if(data.length() > 0){
-                        new UpdateUserInfo().execute(String.valueOf(data));
+                    Pattern p;
+                    Matcher m;
+
+                    p = Pattern.compile("[^0-9]");
+                    m = p.matcher(PhoneNum.getText().toString());
+                    boolean ppart = m.find();
+
+                    if(parts.length > 1){
+                        p = Pattern.compile("[^A-Za-z0-9.]");
+                        m = p.matcher(parts[0]);
+                        boolean fpart = m.find();
+                        m = p.matcher(parts[1]);
+                        boolean spart = m.find();
+
+                        if(fpart == true || spart == true){
+                            lblShowEmail.setVisibility(View.VISIBLE);
+                            Toast.makeText(ViewProfileActivity.this, "Invalid email format!", Toast.LENGTH_LONG).show();
+                            PhoneNum.setEnabled(true);
+                            Email.setEnabled(true);
+                            lblShowEmail.setText("Invalid Format*");
+                        }
+                        else if(email.length() == 0){
+                            Toast.makeText(ViewProfileActivity.this, "Please enter Email.", Toast.LENGTH_LONG).show();
+                            lblEmailRequired.setVisibility(View.VISIBLE);
+                            PhoneNum.setEnabled(true);
+                            Email.setEnabled(true);
+                            lblShowEmail.setText("Enter Email*");
+                            lblShowEmail.setVisibility(View.VISIBLE);
+                        }
+                        else if(fpart != true && spart != true && email.length() > 0){
+                            lblEmailRequired.setVisibility(View.INVISIBLE);
+                            lblShowEmail.setVisibility(View.INVISIBLE);
+                            lblShowEmail.setText("Invalid Format*");
+                        }
+
+                        if(ppart == true){
+                                lblShowPhone.setVisibility(View.VISIBLE);
+                                Toast.makeText(ViewProfileActivity.this, "Invalid Phone Number Format!", Toast.LENGTH_LONG).show();
+                                PhoneNum.setEnabled(true);
+                                Email.setEnabled(true);
+                            }
+                            else if(phoneNummber.length() == 0){
+                                Toast.makeText(ViewProfileActivity.this, "Please enter Contact number.", Toast.LENGTH_LONG).show();
+                                lblPhoneRequired.setVisibility(View.VISIBLE);
+                                PhoneNum.setEnabled(true);
+                                Email.setEnabled(true);
+                            }
+                            else if(phoneNummber.length() > 10){
+                                Toast.makeText(ViewProfileActivity.this, "Contact number too Long. Please Enter Contact number.", Toast.LENGTH_LONG).show();
+                                lblShowPhone.setVisibility(View.VISIBLE);
+                                PhoneNum.setEnabled(true);
+                                Email.setEnabled(true);
+                            }
+                            else if(phoneNummber.length() < 10){
+                                Toast.makeText(ViewProfileActivity.this, "Contact number too Short. Please Enter Contact number.", Toast.LENGTH_LONG).show();
+                                lblShowPhone.setVisibility(View.VISIBLE);
+                                PhoneNum.setEnabled(true);
+                                Email.setEnabled(true);
+                            }
+                            else{
+                                lblPhoneRequired.setVisibility(View.INVISIBLE);
+                                lblShowPhone.setVisibility(View.INVISIBLE);
+                                try{
+                                    data.put("PersonnelID", employeeNum);
+                                    data.put("PersonnelPhoneNumber", phoneNummber);
+                                    data.put("PersonnelEmail", email);
+                                }
+                                catch (JSONException e){
+                                    e.printStackTrace();
+                                }
+
+                                if(data.length() > 0){
+                                    new UpdateUserInfo().execute(String.valueOf(data));
+                                }
+                                else{
+                                    Toast.makeText(ViewProfileActivity.this, "Please enter details.", Toast.LENGTH_SHORT).show();
+                                }
+                            }
                     }
                     else{
-                        Toast.makeText(ViewProfileActivity.this, "Please enter details.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ViewProfileActivity.this, "Invalid email format!", Toast.LENGTH_SHORT).show();
+                        lblShowEmail.setVisibility(View.VISIBLE);
+                        PhoneNum.setEnabled(true);
+                        Email.setEnabled(true);
                     }
                 }
-
-
             }
         });
 
@@ -226,12 +326,12 @@ public class ViewProfileActivity extends AppCompatActivity {
             String urlstr = getString(R.string.url) + "/personnel/update";
             String jsonResponse = null;
             String jsonData = params[0];
-            HttpsURLConnection urlConnection = null;
+            HttpURLConnection urlConnection = null;
             BufferedReader reader = null;
 
             try{
                 URL url = new URL(urlstr);
-                urlConnection = (HttpsURLConnection) url.openConnection();
+                urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setDoOutput(true);
 
                 urlConnection.setRequestMethod("PUT");
@@ -283,7 +383,9 @@ public class ViewProfileActivity extends AppCompatActivity {
             Email.setEnabled(false);
             PhoneNum = (EditText) findViewById(R.id.txtPhoneNum);
             PhoneNum.setEnabled(false);
+            lblShowRequired.setVisibility(View.INVISIBLE);
             btnEditProfile.setText("Edit Profile");
+            Toast.makeText(ViewProfileActivity.this, "Profile Updated", Toast.LENGTH_SHORT).show();
         }
     }
 }

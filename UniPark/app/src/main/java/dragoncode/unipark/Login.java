@@ -8,6 +8,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -24,6 +25,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.net.HttpURLConnection;
 import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -42,7 +44,7 @@ public class Login extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        boolean connected;
+       /* boolean connected;
         ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
         if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
                 connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
@@ -56,10 +58,10 @@ public class Login extends Activity {
             txtUserName.setEnabled(false);
             txtPassword.setEnabled(false);
         }
-        else if(connected == true){
+        else{
             txtUserName.setEnabled(true);
             txtPassword.setEnabled(true);
-        }
+        }*/
 
         btnLogin = (Button) findViewById(R.id.btnLogin);
         txtUserName = (EditText) findViewById(R.id.txtUserName);
@@ -73,7 +75,7 @@ public class Login extends Activity {
             @Override
             public void onClick(View v) {
 
-                String facilityNo ="s" + txtUserName.getText().toString();
+                /*String facilityNo ="s" + txtUserName.getText().toString();
                 String password = txtPassword.getText().toString();
                 JSONObject data = new JSONObject();
                 if(!txtUserName.getText().toString().equals("") && !txtPassword.getText().toString().equals("")) {
@@ -103,8 +105,10 @@ public class Login extends Activity {
                     Toast.makeText(Login.this, "Please enter password", Toast.LENGTH_SHORT).show();
                     showPassword.setVisibility(View.VISIBLE);
                     showUserName.setVisibility(View.INVISIBLE);
-                }
+                }*/
+                openActivity();
             }
+
         });
     }
 
@@ -120,12 +124,12 @@ public class Login extends Activity {
                 String urlstr = getString(R.string.url) + "/personnel/login";
                 String jsonResponse = null;
                 String jsonData = params[0];
-                HttpsURLConnection urlConnection = null;
+                HttpURLConnection urlConnection = null;
                 BufferedReader reader = null;
 
                 try{
                     URL url = new URL(urlstr);
-                    urlConnection = (HttpsURLConnection) url.openConnection();
+                    urlConnection = (HttpURLConnection) url.openConnection();
                     urlConnection.setDoOutput(true);
 
                     urlConnection.setRequestMethod("POST");

@@ -2,6 +2,6 @@
     <string name="app_name">UniPark</string>
     <string name="Open">Open</string>
     <string name="Close">Close</string>
-    <string name="url">"https://unipark.lunatech.co.za"</string>
-    <string name="title_activity_request_parking">activity_request_parking</string>
+    <string name="url">"http://192.168.8.100:9000"</string>
+    <string name="title_activity_request_parking">UniPark</string>
 </resources>

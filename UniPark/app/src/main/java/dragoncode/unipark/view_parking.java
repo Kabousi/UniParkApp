@@ -48,6 +48,10 @@ public class view_parking extends AppCompatActivity {
         txtParkingAccess = (EditText)findViewById(R.id.txtAccessLevel);
         txtParkingName = (EditText)findViewById(R.id.txtParkingName);
 
+        txtLocation.setEnabled(false);
+        txtParkingName.setEnabled(false);
+        txtParkingAccess.setEnabled(false);
+
         mdrawerlayout = (DrawerLayout) findViewById(R.id.view_parking);
         mToggle = new ActionBarDrawerToggle(this, mdrawerlayout, R.string.Open, R.string.Close);
 

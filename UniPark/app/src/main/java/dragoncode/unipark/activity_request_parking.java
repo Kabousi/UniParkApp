@@ -286,12 +286,12 @@ public class activity_request_parking extends AppCompatActivity implements OnIte
             String urlstr = getString(R.string.url) + "/request-parking";
             String jsonResponse = null;
             String jsonData = params[0];
-            HttpsURLConnection urlConnection = null;
+            HttpURLConnection urlConnection = null;
             BufferedReader reader = null;
 
             try{
                 URL url = new URL(urlstr);
-                urlConnection = (HttpsURLConnection) url.openConnection();
+                urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setDoOutput(true);
 
                 urlConnection.setRequestMethod("POST");
