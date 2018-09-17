@@ -232,30 +232,35 @@ public class ViewProfileActivity extends AppCompatActivity {
                         intent = new Intent(ViewProfileActivity.this, dragoncode.unipark.LandingPageActivity.class);
                         intent.putExtra("ID", id);
                         startActivity(intent);
+                        finish();
                         break;
 
                     case R.id.view_profile:
                         intent = new Intent(ViewProfileActivity.this, dragoncode.unipark.ViewProfileActivity.class);
                         intent.putExtra("ID", id);
                         startActivity(intent);
+                        finish();
                         break;
 
                     case R.id.view_parking:
                         intent = new Intent(ViewProfileActivity.this, dragoncode.unipark.view_parking.class);
                         intent.putExtra("ID", id);
                         startActivity(intent);
+                        finish();
                         break;
 
                     case R.id.request_parking:
                         intent = new Intent(ViewProfileActivity.this, dragoncode.unipark.activity_request_parking.class);
                         intent.putExtra("ID", id);
                         startActivity(intent);
+                        finish();
                         break;
 
                     case R.id.report_user:
                         intent = new Intent(ViewProfileActivity.this, dragoncode.unipark.ActivityReportUser.class);
                         intent.putExtra("ID", id);
                         startActivity(intent);
+                        finish();
                         break;
 
                     case R.id.maps:
@@ -264,6 +269,11 @@ public class ViewProfileActivity extends AppCompatActivity {
                         if(intent.resolveActivity(getPackageManager()) != null)
                             startActivity(intent);
                         break;
+
+                    case R.id.logout:
+                        intent = new Intent(ViewProfileActivity.this, Login.class);
+                        startActivity(intent);
+                        finish();
                 }
                 return true;
             }
@@ -276,6 +286,16 @@ public class ViewProfileActivity extends AppCompatActivity {
         if(mToggle.onOptionsItemSelected(item))
             return true;
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        intent = new Intent(ViewProfileActivity.this, dragoncode.unipark.LandingPageActivity.class);
+        intent.putExtra("ID", id);
+        startActivity(intent);
+        finish();
     }
 
     class GetPersonDetails extends AsyncTask<Void, Void, Void> {
@@ -326,12 +346,12 @@ public class ViewProfileActivity extends AppCompatActivity {
             String urlstr = getString(R.string.url) + "/personnel/update";
             String jsonResponse = null;
             String jsonData = params[0];
-            HttpURLConnection urlConnection = null;
+            HttpsURLConnection urlConnection = null;
             BufferedReader reader = null;
 
             try{
                 URL url = new URL(urlstr);
-                urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection = (HttpsURLConnection) url.openConnection();
                 urlConnection.setDoOutput(true);
 
                 urlConnection.setRequestMethod("PUT");

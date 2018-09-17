@@ -6,4 +6,5 @@
     <item android:id="@+id/request_parking" android:title="Request Parking"></item>
     <item android:id="@+id/report_user" android:title="Report User"></item>
     <item android:id="@+id/maps" android:title="Google Maps"></item>
+    <item android:id="@+id/logout" android:title="Logout"></item>
 </menu>

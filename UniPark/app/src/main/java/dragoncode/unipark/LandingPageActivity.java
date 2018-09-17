@@ -2,6 +2,7 @@ package dragoncode.unipark;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.Application;
 import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
@@ -66,30 +67,35 @@ public class LandingPageActivity extends AppCompatActivity implements View.OnCli
                         intent = new Intent(LandingPageActivity.this, dragoncode.unipark.LandingPageActivity.class);
                         intent.putExtra("ID", id);
                         startActivity(intent);
+                        finish();
                         break;
 
                     case R.id.view_profile:
                         intent = new Intent(LandingPageActivity.this, dragoncode.unipark.ViewProfileActivity.class);
                         intent.putExtra("ID", id);
                         startActivity(intent);
+                        finish();
                         break;
 
                     case R.id.view_parking:
                         intent = new Intent(LandingPageActivity.this, dragoncode.unipark.view_parking.class);
                         intent.putExtra("ID", id);
                         startActivity(intent);
+                        finish();
                         break;
 
                     case R.id.request_parking:
                         intent = new Intent(LandingPageActivity.this, dragoncode.unipark.activity_request_parking.class);
                         intent.putExtra("ID", id);
                         startActivity(intent);
+                        finish();
                         break;
 
                     case R.id.report_user:
                         intent = new Intent(LandingPageActivity.this, dragoncode.unipark.ActivityReportUser.class);
                         intent.putExtra("ID", id);
                         startActivity(intent);
+                        finish();
                         break;
 
                     case R.id.maps:
@@ -98,6 +104,11 @@ public class LandingPageActivity extends AppCompatActivity implements View.OnCli
                         if(intent.resolveActivity(getPackageManager()) != null)
                             startActivity(intent);
                         break;
+
+                    case R.id.logout:
+                        intent = new Intent(LandingPageActivity.this, Login.class);
+                        startActivity(intent);
+                        finish();
                 }
                 return true;
             }
@@ -121,18 +132,21 @@ public class LandingPageActivity extends AppCompatActivity implements View.OnCli
                 intent = new Intent(this, dragoncode.unipark.ViewProfileActivity.class);
                 intent.putExtra("ID", id);
                 startActivity(intent);
+                finish();
                 break;
 
             case R.id.btn_parking:
                 intent = new Intent(this, dragoncode.unipark.view_parking.class);
                 intent.putExtra("ID", id);
                 startActivity(intent);
+                finish();
                 break;
 
             case R.id.btn_report:
                 intent = new Intent(this, dragoncode.unipark.ActivityReportUser.class);
                 intent.putExtra("ID", id);
                 startActivity(intent);
+                finish();
                 break;
 
             case R.id.btn_maps:
@@ -141,9 +155,7 @@ public class LandingPageActivity extends AppCompatActivity implements View.OnCli
                 intent.setPackage("com.google.android.apps.maps");
                 if(intent.resolveActivity(getPackageManager()) != null)
                 startActivity(intent);
-
                 break;
-        }
-
+                        }
     }
 }

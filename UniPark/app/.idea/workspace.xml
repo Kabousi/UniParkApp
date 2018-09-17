@@ -34,12 +34,34 @@
       <file leaf-file-name="view_parking.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/dragoncode/unipark/view_parking.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="157" column="9" lean-forward="false" selection-start-line="157" selection-start-column="9" selection-end-line="157" selection-end-column="9" />
+            <state relative-caret-position="294">
+              <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="78" selection-end-column="17" />
               <folding>
-                <element signature="e#4740#4741#0" expanded="true" />
-                <element signature="e#4784#4785#0" expanded="true" />
+                <element signature="e#1867#1880#0" expanded="true" />
+                <element signature="e#1882#1896#0" expanded="true" />
+                <element signature="e#2172#2717#0" expanded="true" />
+                <element signature="e#2716#2717#0" expanded="true" />
+                <element signature="e#2827#2975#0" expanded="true" />
+                <element signature="e#2974#2975#0" expanded="true" />
+                <element signature="e#3140#5533#0" expanded="true" />
+                <element signature="e#5532#5533#0" expanded="true" />
+                <element signature="e#6127#6128#0" expanded="true" />
+                <element signature="e#6171#6172#0" expanded="true" />
+                <element signature="e#6321#6344#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activity_view_parking.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_view_parking.xml">
+          <provider selected="true" editor-type-id="android-designer2">
+            <state />
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="3043">
+              <caret line="179" column="4" lean-forward="false" selection-start-line="179" selection-start-column="4" selection-end-line="179" selection-end-column="4" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -47,22 +69,12 @@
       <file leaf-file-name="Login.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/dragoncode/unipark/Login.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1360">
-              <caret line="108" column="31" lean-forward="false" selection-start-line="108" selection-start-column="31" selection-end-line="108" selection-end-column="31" />
+            <state relative-caret-position="167">
+              <caret line="46" column="61" lean-forward="false" selection-start-line="46" selection-start-column="61" selection-end-line="46" selection-end-column="61" />
               <folding>
-                <element signature="e#4544#4545#0" expanded="true" />
-                <element signature="e#4615#4616#0" expanded="true" />
+                <element signature="e#4792#4793#0" expanded="true" />
+                <element signature="e#4863#4864#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="parking_name_item.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/dragoncode/unipark/parking_name_item.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -70,9 +82,14 @@
       <file leaf-file-name="ViewProfileActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/dragoncode/unipark/ViewProfileActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6052">
-              <caret line="387" column="69" lean-forward="false" selection-start-line="387" selection-start-column="69" selection-end-line="387" selection-end-column="69" />
-              <folding />
+            <state relative-caret-position="403">
+              <caret line="297" column="17" lean-forward="false" selection-start-line="297" selection-start-column="17" selection-end-line="297" selection-end-column="17" />
+              <folding>
+                <element signature="e#9986#12421#0" expanded="true" />
+                <element signature="e#12420#12421#0" expanded="true" />
+                <element signature="e#13875#14253#0" expanded="true" />
+                <element signature="e#14252#14253#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -80,12 +97,22 @@
       <file leaf-file-name="ActivityReportUser.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/dragoncode/unipark/ActivityReportUser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1258">
-              <caret line="119" column="16" lean-forward="false" selection-start-line="119" selection-start-column="16" selection-end-line="119" selection-end-column="16" />
+            <state relative-caret-position="4476">
+              <caret line="424" column="5" lean-forward="false" selection-start-line="424" selection-start-column="5" selection-end-line="424" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#10362#10363#0" expanded="true" />
-                <element signature="e#10406#10407#0" expanded="true" />
+                <element signature="e#3398#3411#0" expanded="true" />
+                <element signature="e#3413#3427#0" expanded="true" />
+                <element signature="e#3612#5625#0" expanded="true" />
+                <element signature="e#5624#5625#0" expanded="true" />
+                <element signature="e#5981#6194#0" expanded="true" />
+                <element signature="e#6193#6194#0" expanded="true" />
+                <element signature="e#6359#8790#0" expanded="true" />
+                <element signature="e#8789#8790#0" expanded="true" />
+                <element signature="e#11627#11628#0" expanded="true" />
+                <element signature="e#11671#11672#0" expanded="true" />
+                <element signature="e#11807#11830#0" expanded="true" />
+                <element signature="e#13293#13316#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -94,18 +121,21 @@
       <file leaf-file-name="activity_request_parking.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/dragoncode/unipark/activity_request_parking.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="40" column="13" lean-forward="false" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
-              <folding />
+            <state relative-caret-position="165">
+              <caret line="171" column="0" lean-forward="false" selection-start-line="171" selection-start-column="0" selection-end-line="174" selection-end-column="33" />
+              <folding>
+                <element signature="e#2575#3141#0" expanded="true" />
+                <element signature="e#3140#3141#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build.gradle">
+      <file leaf-file-name="LandingPageActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/dragoncode/unipark/LandingPageActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="31" column="70" lean-forward="false" selection-start-line="31" selection-start-column="70" selection-end-line="31" selection-end-column="70" />
+            <state relative-caret-position="170">
+              <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -117,18 +147,8 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="11" column="94" lean-forward="false" selection-start-line="11" selection-start-column="94" selection-end-line="11" selection-end-column="94" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/res/values/strings.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="44" lean-forward="false" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
+            <state relative-caret-position="187">
+              <caret line="11" column="79" lean-forward="false" selection-start-line="11" selection-start-column="79" selection-end-line="11" selection-end-column="79" />
               <folding />
             </state>
           </provider>
@@ -140,8 +160,8 @@
             <state />
           </provider>
           <provider editor-type-id="text-editor">
-            <state relative-caret-position="3349">
-              <caret line="197" column="12" lean-forward="false" selection-start-line="197" selection-start-column="12" selection-end-line="197" selection-end-column="12" />
+            <state relative-caret-position="207">
+              <caret line="184" column="47" lean-forward="false" selection-start-line="184" selection-start-column="47" selection-end-line="184" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -2386,28 +2406,28 @@
         <option value="$PROJECT_DIR$/src/main/java/dragoncode/unipark/FillAreaSpinner.java" />
         <option value="$PROJECT_DIR$/src/main/java/dragoncode/unipark/ParkingAdapter.java" />
         <option value="$PROJECT_DIR$/src/main/res/layout/spinner_list.xml" />
-        <option value="$PROJECT_DIR$/src/main/res/menu/navigation_menu.xml" />
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_landing_page.xml" />
-        <option value="$PROJECT_DIR$/src/main/res/layout/activity_request_parking2.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/dragoncode/unipark/LandingPageActivity.java" />
         <option value="$PROJECT_DIR$/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_view_parking.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/dragoncode/unipark/view_parking.java" />
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_view_profile.xml" />
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_login.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/dragoncode/unipark/activity_request_parking.java" />
-        <option value="$PROJECT_DIR$/src/main/java/dragoncode/unipark/HttpHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/dragoncode/unipark/ViewProfileActivity.java" />
-        <option value="$PROJECT_DIR$/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/dragoncode/unipark/Login.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
-        <option value="$PROJECT_DIR$/src/main/res/layout/activity_report_user.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/dragoncode/unipark/HttpHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activity_request_parking2.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/menu/navigation_menu.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/dragoncode/unipark/view_parking.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dragoncode/unipark/ViewProfileActivity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dragoncode/unipark/activity_request_parking.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dragoncode/unipark/LandingPageActivity.java" />
         <option value="$PROJECT_DIR$/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/dragoncode/unipark/Login.java" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activity_report_user.xml" />
         <option value="$PROJECT_DIR$/src/main/java/dragoncode/unipark/ActivityReportUser.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1616" />
@@ -2428,7 +2448,84 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="UniPark" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="UniPark" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="PackagesPane" />
+      <pane id="AndroidView">
+        <subPane>
+          <expand>
+            <path>
+              <item name="app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="manifests" type="f94875db:AndroidManifestsGroupNode" />
+            </path>
+            <path>
+              <item name="app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+            </path>
+            <path>
+              <item name="app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="unipark" type="cbb59c9e:AndroidPsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+            </path>
+            <path>
+              <item name="app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="drawable" type="ddeffd01:AndroidResFolderTypeNode" />
+            </path>
+            <path>
+              <item name="app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
+            </path>
+            <path>
+              <item name="app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="menu" type="ddeffd01:AndroidResFolderTypeNode" />
+            </path>
+            <path>
+              <item name="app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="values" type="ddeffd01:AndroidResFolderTypeNode" />
+            </path>
+            <path>
+              <item name="app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scope">
         <subPane subId="Project Files">
           <expand>
@@ -2472,34 +2569,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView">
-        <subPane>
-          <expand>
-            <path>
-              <item name="app" type="1abcf292:AndroidViewProjectNode" />
-              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scratches" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="UniPark" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="UniPark" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2507,6 +2576,8 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="device.picker.selection" value="89U7N18316007670" />
     <property name="android.profiler.active" value="true" />
+    <property name="android.project.structure.last.selected" value="jtds-1.3.1" />
+    <property name="android.project.structure.proportion" value="0.15" />
   </component>
   <component name="RecentsManager">
     <key name="android.template.packageName">
@@ -2690,16 +2761,17 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="886" extended-state="7" />
+    <frame x="-8" y="-8" width="1616" height="886" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32933334" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32933334" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32933334" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32933334" sideWeight="0.5025707" order="12" side_tool="true" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969153" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32933334" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32933334" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -2707,7 +2779,7 @@
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12532134" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12532134" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328" sideWeight="0.4974293" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -2721,7 +2793,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969153" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -2739,7 +2810,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39866668" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39866668" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32933334" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2773,7 +2844,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="148" />
+      <option name="time" value="162" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -2787,17 +2858,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/dragoncode/unipark/Login.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2023">
-          <caret line="119" column="39" lean-forward="true" selection-start-line="119" selection-start-column="39" selection-end-line="119" selection-end-column="39" />
-          <folding>
-            <element signature="e#4544#4545#0" expanded="true" />
-            <element signature="e#4615#4616#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -2818,8 +2878,8 @@
         <state relative-caret-position="1666">
           <caret line="98" column="0" lean-forward="false" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
           <folding>
-            <element signature="e#4544#4545#0" expanded="true" />
-            <element signature="e#4615#4616#0" expanded="true" />
+            <element signature="e#4792#4793#0" expanded="true" />
+            <element signature="e#4863#4864#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2844,8 +2904,8 @@
         <state relative-caret-position="2074">
           <caret line="122" column="56" lean-forward="false" selection-start-line="122" selection-start-column="56" selection-end-line="122" selection-end-column="56" />
           <folding>
-            <element signature="e#4544#4545#0" expanded="true" />
-            <element signature="e#4615#4616#0" expanded="true" />
+            <element signature="e#4792#4793#0" expanded="true" />
+            <element signature="e#4863#4864#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2870,8 +2930,8 @@
         <state relative-caret-position="2074">
           <caret line="122" column="56" lean-forward="false" selection-start-line="122" selection-start-column="56" selection-end-line="122" selection-end-column="56" />
           <folding>
-            <element signature="e#4544#4545#0" expanded="true" />
-            <element signature="e#4615#4616#0" expanded="true" />
+            <element signature="e#4792#4793#0" expanded="true" />
+            <element signature="e#4863#4864#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2889,8 +2949,8 @@
         <state relative-caret-position="1054">
           <caret line="100" column="47" lean-forward="false" selection-start-line="100" selection-start-column="47" selection-end-line="100" selection-end-column="47" />
           <folding>
-            <element signature="e#4544#4545#0" expanded="true" />
-            <element signature="e#4615#4616#0" expanded="true" />
+            <element signature="e#4792#4793#0" expanded="true" />
+            <element signature="e#4863#4864#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -3004,30 +3064,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/menu/navigation_menu.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="7" lean-forward="false" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_request_parking2.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2040">
-          <caret line="120" column="56" lean-forward="true" selection-start-line="120" selection-start-column="56" selection-end-line="120" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/values/styles.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3035,40 +3076,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="35" lean-forward="false" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_view_parking.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="3043">
-          <caret line="179" column="4" lean-forward="false" selection-start-line="179" selection-start-column="4" selection-end-line="179" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_login.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/dragoncode/unipark/HttpHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="25" column="42" lean-forward="false" selection-start-line="25" selection-start-column="42" selection-end-line="25" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/dragoncode/unipark/LandingPageActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-250">
-          <caret line="98" column="50" lean-forward="false" selection-start-line="98" selection-start-column="50" selection-end-line="98" selection-end-column="50" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3076,33 +3084,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="13" column="58" lean-forward="false" selection-start-line="13" selection-start-column="58" selection-end-line="13" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/dragoncode/unipark/parking_name_item.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="44" lean-forward="false" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/dragoncode/unipark/Login.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1360">
-          <caret line="108" column="31" lean-forward="false" selection-start-line="108" selection-start-column="31" selection-end-line="108" selection-end-column="31" />
-          <folding>
-            <element signature="e#4544#4545#0" expanded="true" />
-            <element signature="e#4615#4616#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3124,10 +3105,155 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dragoncode/unipark/parking_name_item.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dragoncode/unipark/HttpHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="29" column="49" lean-forward="false" selection-start-line="29" selection-start-column="49" selection-end-line="29" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="54" lean-forward="false" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_login.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_request_parking2.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="120" column="56" lean-forward="true" selection-start-line="120" selection-start-column="56" selection-end-line="120" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/parking_name_spinner.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/menu/navigation_menu.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="4" lean-forward="false" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/dragoncode/unipark/ViewProfileActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6052">
-          <caret line="387" column="69" lean-forward="false" selection-start-line="387" selection-start-column="69" selection-end-line="387" selection-end-column="69" />
+        <state relative-caret-position="403">
+          <caret line="297" column="17" lean-forward="false" selection-start-line="297" selection-start-column="17" selection-end-line="297" selection-end-column="17" />
+          <folding>
+            <element signature="e#9986#12421#0" expanded="true" />
+            <element signature="e#12420#12421#0" expanded="true" />
+            <element signature="e#13875#14253#0" expanded="true" />
+            <element signature="e#14252#14253#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dragoncode/unipark/view_parking.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="78" selection-end-column="17" />
+          <folding>
+            <element signature="e#1867#1880#0" expanded="true" />
+            <element signature="e#1882#1896#0" expanded="true" />
+            <element signature="e#2172#2717#0" expanded="true" />
+            <element signature="e#2716#2717#0" expanded="true" />
+            <element signature="e#2827#2975#0" expanded="true" />
+            <element signature="e#2974#2975#0" expanded="true" />
+            <element signature="e#3140#5533#0" expanded="true" />
+            <element signature="e#5532#5533#0" expanded="true" />
+            <element signature="e#6127#6128#0" expanded="true" />
+            <element signature="e#6171#6172#0" expanded="true" />
+            <element signature="e#6321#6344#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dragoncode/unipark/activity_request_parking.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="171" column="0" lean-forward="false" selection-start-line="171" selection-start-column="0" selection-end-line="174" selection-end-column="33" />
+          <folding>
+            <element signature="e#2575#3141#0" expanded="true" />
+            <element signature="e#3140#3141#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dragoncode/unipark/LandingPageActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="79" lean-forward="false" selection-start-line="11" selection-start-column="79" selection-end-line="11" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dragoncode/unipark/Login.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="46" column="61" lean-forward="false" selection-start-line="46" selection-start-column="61" selection-end-line="46" selection-end-column="61" />
+          <folding>
+            <element signature="e#4792#4793#0" expanded="true" />
+            <element signature="e#4863#4864#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_view_parking.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="3043">
+          <caret line="179" column="4" lean-forward="false" selection-start-line="179" selection-start-column="4" selection-end-line="179" selection-end-column="4" />
           <folding />
         </state>
       </provider>
@@ -3137,50 +3263,30 @@
         <state />
       </provider>
       <provider editor-type-id="text-editor">
-        <state relative-caret-position="3349">
-          <caret line="197" column="12" lean-forward="false" selection-start-line="197" selection-start-column="12" selection-end-line="197" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/dragoncode/unipark/activity_request_parking.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="40" column="13" lean-forward="false" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/dragoncode/unipark/view_parking.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="157" column="9" lean-forward="false" selection-start-line="157" selection-start-column="9" selection-end-line="157" selection-end-column="9" />
-          <folding>
-            <element signature="e#4740#4741#0" expanded="true" />
-            <element signature="e#4784#4785#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="11" column="94" lean-forward="false" selection-start-line="11" selection-start-column="94" selection-end-line="11" selection-end-column="94" />
+        <state relative-caret-position="207">
+          <caret line="184" column="47" lean-forward="false" selection-start-line="184" selection-start-column="47" selection-end-line="184" selection-end-column="47" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/dragoncode/unipark/ActivityReportUser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1258">
-          <caret line="119" column="16" lean-forward="false" selection-start-line="119" selection-start-column="16" selection-end-line="119" selection-end-column="16" />
+        <state relative-caret-position="4476">
+          <caret line="424" column="5" lean-forward="false" selection-start-line="424" selection-start-column="5" selection-end-line="424" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#10362#10363#0" expanded="true" />
-            <element signature="e#10406#10407#0" expanded="true" />
+            <element signature="e#3398#3411#0" expanded="true" />
+            <element signature="e#3413#3427#0" expanded="true" />
+            <element signature="e#3612#5625#0" expanded="true" />
+            <element signature="e#5624#5625#0" expanded="true" />
+            <element signature="e#5981#6194#0" expanded="true" />
+            <element signature="e#6193#6194#0" expanded="true" />
+            <element signature="e#6359#8790#0" expanded="true" />
+            <element signature="e#8789#8790#0" expanded="true" />
+            <element signature="e#11627#11628#0" expanded="true" />
+            <element signature="e#11671#11672#0" expanded="true" />
+            <element signature="e#11807#11830#0" expanded="true" />
+            <element signature="e#13293#13316#0" expanded="true" />
           </folding>
         </state>
       </provider>

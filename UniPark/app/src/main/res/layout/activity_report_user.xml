@@ -182,13 +182,14 @@
 
                 <ImageView
                     android:id="@+id/imgPic"
-                    android:layout_width="346dp"
-                    android:layout_height="248dp"
+                    android:layout_width="360dp"
+                    android:layout_height="301dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
+                    android:scaleType="centerCrop"
                     android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -204,13 +205,9 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        app:itemTextColor="@color/colorAccent"
+        app:itemTextColor="@color/colorPrimary"
         app:menu="@menu/navigation_menu">
 
-        <SurfaceView
-            android:id="@+id/surfaceView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
     </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>

@@ -1,6 +1,7 @@
 package dragoncode.unipark;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -31,6 +32,7 @@ public class view_parking extends AppCompatActivity {
     private Intent intent;
 
     private Button btnRequest;
+    private Button btnMaps;
 
     private EditText txtParkingName;
     private EditText txtParkingAccess;
@@ -38,6 +40,9 @@ public class view_parking extends AppCompatActivity {
 
     private String id;
     private String[] details = new String[5];
+    private String[] location;
+
+     private Uri gmmIntentUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +67,19 @@ public class view_parking extends AppCompatActivity {
 
         new ParkingInfo().execute();
 
+        btnMaps = (Button) findViewById(R.id.btnMaps);
+        btnMaps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gmmIntentUri = Uri.parse("geo:0,0?q=" + location[0] + "," +location[1] + "(" + txtLocation.getText().toString() + ")");
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                if (mapIntent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(mapIntent);
+                }
+            }
+        });
+
         btnRequest = (Button) findViewById(R.id.btnRequestParking);
         btnRequest.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,30 +100,35 @@ public class view_parking extends AppCompatActivity {
                         intent = new Intent(view_parking.this, dragoncode.unipark.LandingPageActivity.class);
                         intent.putExtra("ID", id);
                         startActivity(intent);
+                        finish();
                         break;
 
                     case R.id.view_profile:
                         intent = new Intent(view_parking.this, dragoncode.unipark.ViewProfileActivity.class);
                         intent.putExtra("ID", id);
                         startActivity(intent);
+                        finish();
                         break;
 
                     case R.id.view_parking:
                         intent = new Intent(view_parking.this, dragoncode.unipark.view_parking.class);
                         intent.putExtra("ID", id);
                         startActivity(intent);
+                        finish();
                         break;
 
                     case R.id.request_parking:
                         intent = new Intent(view_parking.this, dragoncode.unipark.activity_request_parking.class);
                         intent.putExtra("ID", id);
                         startActivity(intent);
+                        finish();
                         break;
 
                     case R.id.report_user:
                         intent = new Intent(view_parking.this, dragoncode.unipark.ActivityReportUser.class);
                         intent.putExtra("ID", id);
                         startActivity(intent);
+                        finish();
                         break;
 
                     case R.id.maps:
@@ -114,6 +137,11 @@ public class view_parking extends AppCompatActivity {
                         if(intent.resolveActivity(getPackageManager()) != null)
                             startActivity(intent);
                         break;
+
+                    case R.id.logout:
+                        intent = new Intent(view_parking.this, Login.class);
+                        startActivity(intent);
+                        finish();
                 }
                 return true;
             }
@@ -125,6 +153,17 @@ public class view_parking extends AppCompatActivity {
         if(mToggle.onOptionsItemSelected(item))
             return true;
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        intent = new Intent(view_parking.this, dragoncode.unipark.LandingPageActivity.class);
+        intent.putExtra("ID", id);
+        startActivity(intent);
+        finish();
+
     }
 
     class ParkingInfo extends AsyncTask<Void, Void, Void>{
@@ -163,6 +202,7 @@ public class view_parking extends AppCompatActivity {
             txtParkingName.setText(details[1]);
             txtParkingAccess.setText(details[2]);
             txtLocation.setText(details[3]);
+            location = details[4].split(",");
         }
     }
 

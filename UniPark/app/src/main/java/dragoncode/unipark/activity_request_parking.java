@@ -1,6 +1,7 @@
 package dragoncode.unipark;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -13,9 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 
@@ -32,11 +31,9 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.jar.JarEntry;
-
-import javax.net.ssl.HttpsURLConnection;
 
 public class activity_request_parking extends AppCompatActivity implements OnItemSelectedListener {
 
@@ -56,6 +53,8 @@ public class activity_request_parking extends AppCompatActivity implements OnIte
 
     private String id;
     private String[] pArea;
+    private String[] pLocation;
+    private String[] coordinates;
     private ArrayList<String> location;
 
     private int count = 1;
@@ -69,7 +68,7 @@ public class activity_request_parking extends AppCompatActivity implements OnIte
         btnRequest = (Button) findViewById(R.id.btnAddRequest);
 
         spnParkingName = (Spinner) findViewById(R.id.spnParkingName);
-        spnLocation = (Spinner) findViewById(R.id.spnLoaction);
+        spnLocation = (Spinner) findViewById(R.id.spnLocation);
 
         mdrawerLayout = (DrawerLayout) findViewById(R.id.request_parking);
 
@@ -83,16 +82,28 @@ public class activity_request_parking extends AppCompatActivity implements OnIte
 
         spnParkingName.setOnItemSelectedListener(this);
 
+        btnMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + coordinates[0] + "," +coordinates[1] + "(" + spnParkingName.getSelectedItem().toString() + ")");
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                if (mapIntent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(mapIntent);
+                }
+            }
+        });
+
         btnRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 String personelID ="s" + getIntent().getStringExtra("ID");
-                String parkingSpaceID = spnParkingName.getSelectedItem().toString();
+                String parkingSpaceID = spnLocation.getSelectedItem().toString();
                 JSONObject data = new JSONObject();
 
                 try{
-                    data.put("PersonelID", personelID);
+                    data.put("PersonnelID", personelID);
                     data.put("ParkingSpaceID", parkingSpaceID);
                 }
                 catch (JSONException e){
@@ -120,30 +131,35 @@ public class activity_request_parking extends AppCompatActivity implements OnIte
                         intent = new Intent(activity_request_parking.this, dragoncode.unipark.LandingPageActivity.class);
                         intent.putExtra("ID", id);
                         startActivity(intent);
+                        finish();
                         break;
 
                     case R.id.view_profile:
                         intent = new Intent(activity_request_parking.this, dragoncode.unipark.ViewProfileActivity.class);
                         intent.putExtra("ID", id);
                         startActivity(intent);
+                        finish();
                         break;
 
                     case R.id.view_parking:
                         intent = new Intent(activity_request_parking.this, dragoncode.unipark.view_parking.class);
                         intent.putExtra("ID", id);
                         startActivity(intent);
+                        finish();
                         break;
 
                     case R.id.request_parking:
                         intent = new Intent(activity_request_parking.this, dragoncode.unipark.activity_request_parking.class);
                         intent.putExtra("ID", id);
                         startActivity(intent);
+                        finish();
                         break;
 
                     case R.id.report_user:
                         intent = new Intent(activity_request_parking.this, dragoncode.unipark.ActivityReportUser.class);
                         intent.putExtra("ID", id);
                         startActivity(intent);
+                        finish();
                         break;
 
                     case R.id.maps:
@@ -152,6 +168,11 @@ public class activity_request_parking extends AppCompatActivity implements OnIte
                         if(intent.resolveActivity(getPackageManager()) != null)
                             startActivity(intent);
                         break;
+
+                    case R.id.logout:
+                        intent = new Intent(activity_request_parking.this, Login.class);
+                        startActivity(intent);
+                        finish();
                 }
                 return true;
             }
@@ -166,8 +187,19 @@ public class activity_request_parking extends AppCompatActivity implements OnIte
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        intent = new Intent(activity_request_parking.this, dragoncode.unipark.LandingPageActivity.class);
+        intent.putExtra("ID", id);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         new FillLocationSpinner().execute();
+        coordinates = pLocation[position].split(",");
     }
 
     @Override
@@ -189,10 +221,12 @@ public class activity_request_parking extends AppCompatActivity implements OnIte
                     JSONArray jArray =(JSONArray) new JSONTokener(jsonstr).nextValue();
 
                     pArea = new String[jArray.length()];
+                    pLocation = new String[jArray.length()];
 
                     for(int i =0; i < jArray.length(); i++){
                         JSONObject object = jArray.getJSONObject(i);
                         pArea[i] = object.getString("ParkingArea");
+                        pLocation[i] = object.getString("AreaLocation");
                     }
                 } catch (final JSONException e) {
                     runOnUiThread(new Runnable() {
@@ -284,6 +318,7 @@ public class activity_request_parking extends AppCompatActivity implements OnIte
 
         protected String doInBackground(String... params) {
             String urlstr = getString(R.string.url) + "/request-parking";
+
             String jsonResponse = null;
             String jsonData = params[0];
             HttpURLConnection urlConnection = null;
@@ -339,7 +374,17 @@ public class activity_request_parking extends AppCompatActivity implements OnIte
 
         @Override
         protected void onPostExecute(String jsonResponse){
-            String response = jsonResponse;
+            String[] response = new String[1];
+
+            try {
+                JSONObject obj = new JSONObject(jsonResponse);
+
+                response[0] = obj.getString("data");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
             if(response.equals("\" SUCCESS \"")) {
                 Toast.makeText(activity_request_parking.this, "Request Successful!", Toast.LENGTH_LONG).show();
             }

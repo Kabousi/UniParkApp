@@ -1,15 +1,23 @@
 package dragoncode.unipark;
 
 import android.Manifest;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Camera;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -38,6 +46,7 @@ import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -47,11 +56,14 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.net.URL;
 import java.net.HttpURLConnection;
+import java.sql.Time;
 
 
 import javax.net.ssl.HttpsURLConnection;
 
 public class ActivityReportUser extends AppCompatActivity{
+
+    private int REQUEST_WRITE_STORAGE_REQUEST_CODE = 1;
 
     private DrawerLayout mdrawerLayout;
     private ActionBarDrawerToggle mToggle;
@@ -67,6 +79,7 @@ public class ActivityReportUser extends AppCompatActivity{
     private TextView lblShowReg;
 
     private ImageView imgPic;
+    private Uri imageUri;
 
     private String id;
     private String[] details = new String[1];
@@ -76,9 +89,6 @@ public class ActivityReportUser extends AppCompatActivity{
     private Intent intent;
 
     private static final String TAG = "ActivityReportUser";
-
-    private static final int requestPermissionID = 1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -146,6 +156,12 @@ public class ActivityReportUser extends AppCompatActivity{
             }
         });
 
+        ContentValues values = new ContentValues();
+        values.put(MediaStore.Images.Media.TITLE, "New Picture");
+        values.put(MediaStore.Images.Media.DESCRIPTION, "From your Camera");
+        imageUri = getContentResolver().insert(
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+
         btnCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -167,30 +183,35 @@ public class ActivityReportUser extends AppCompatActivity{
                         intent = new Intent(ActivityReportUser.this, dragoncode.unipark.LandingPageActivity.class);
                         intent.putExtra("ID", id);
                         startActivity(intent);
+                        finish();
                         break;
 
                     case R.id.view_profile:
                         intent = new Intent(ActivityReportUser.this, dragoncode.unipark.ViewProfileActivity.class);
                         intent.putExtra("ID", id);
                         startActivity(intent);
+                        finish();
                         break;
 
                     case R.id.view_parking:
                         intent = new Intent(ActivityReportUser.this, dragoncode.unipark.view_parking.class);
                         intent.putExtra("ID", id);
                         startActivity(intent);
+                        finish();
                         break;
 
                     case R.id.request_parking:
                         intent = new Intent(ActivityReportUser.this, dragoncode.unipark.activity_request_parking.class);
                         intent.putExtra("ID", id);
                         startActivity(intent);
+                        finish();
                         break;
 
                     case R.id.report_user:
                         intent = new Intent(ActivityReportUser.this, dragoncode.unipark.ActivityReportUser.class);
                         intent.putExtra("ID", id);
                         startActivity(intent);
+                        finish();
                         break;
 
                     case R.id.maps:
@@ -199,6 +220,11 @@ public class ActivityReportUser extends AppCompatActivity{
                         if (intent.resolveActivity(getPackageManager()) != null)
                             startActivity(intent);
                         break;
+
+                    case R.id.logout:
+                        intent = new Intent(ActivityReportUser.this, Login.class);
+                        startActivity(intent);
+                        finish();
                 }
                 return true;
             }
@@ -210,6 +236,16 @@ public class ActivityReportUser extends AppCompatActivity{
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        intent = new Intent(ActivityReportUser.this, dragoncode.unipark.LandingPageActivity.class);
+        intent.putExtra("ID", id);
+        startActivity(intent);
+        finish();
     }
 
     @Override
@@ -232,16 +268,16 @@ public class ActivityReportUser extends AppCompatActivity{
                 StringBuilder strBuilder = new StringBuilder();
                 for (int i = 0; i < items.size(); i++)
                 {
-                        TextBlock item = (TextBlock) items.valueAt(i);
-                        strBuilder.append(item.getValue());
-                        for (com.google.android.gms.vision.text.Text line : item.getComponents()) {
-                            //extract scanned text lines here
-                            Log.v("lines", line.getValue());
-                            for (com.google.android.gms.vision.text.Text element : line.getComponents()) {
-                                //extract scanned text words here
-                                Log.v("element", element.getValue());
-                            }
+                    TextBlock item = (TextBlock) items.valueAt(i);
+                    strBuilder.append(item.getValue());
+                    for (com.google.android.gms.vision.text.Text line : item.getComponents()) {
+                        //extract scanned text lines here
+                        Log.v("lines", line.getValue());
+                        for (com.google.android.gms.vision.text.Text element : line.getComponents()) {
+                            //extract scanned text words here
+                            Log.v("element", element.getValue());
                         }
+                    }
                     //}
                 }
                 String[] oldStr = strBuilder.toString().split(" ");
@@ -316,12 +352,12 @@ public class ActivityReportUser extends AppCompatActivity{
             String urlstr = getString(R.string.url) + "/report";
             String jsonResponse = null;
             String jsonData = params[0];
-            HttpURLConnection urlConnection = null;
+            HttpsURLConnection urlConnection = null;
             BufferedReader reader = null;
 
             try {
                 URL url = new URL(urlstr);
-                urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection = (HttpsURLConnection) url.openConnection();
                 urlConnection.setDoOutput(true);
 
                 urlConnection.setRequestMethod("POST");
@@ -387,6 +423,5 @@ public class ActivityReportUser extends AppCompatActivity{
             }
         }
     }
-
 }
 

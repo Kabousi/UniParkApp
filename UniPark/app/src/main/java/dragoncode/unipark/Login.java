@@ -1,12 +1,17 @@
 package dragoncode.unipark;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -39,10 +44,14 @@ public class Login extends Activity {
     private TextView showUserName, showPassword;
     private ProgressBar progressBar;
 
+    private final int REQUEST_WRITE_STORAGE_REQUEST_CODE = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        requestAppPermissions();
 
        /* boolean connected;
         ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -75,7 +84,7 @@ public class Login extends Activity {
             @Override
             public void onClick(View v) {
 
-                /*String facilityNo ="s" + txtUserName.getText().toString();
+                String facilityNo ="s" + txtUserName.getText().toString();
                 String password = txtPassword.getText().toString();
                 JSONObject data = new JSONObject();
                 if(!txtUserName.getText().toString().equals("") && !txtPassword.getText().toString().equals("")) {
@@ -105,8 +114,7 @@ public class Login extends Activity {
                     Toast.makeText(Login.this, "Please enter password", Toast.LENGTH_SHORT).show();
                     showPassword.setVisibility(View.VISIBLE);
                     showUserName.setVisibility(View.INVISIBLE);
-                }*/
-                openActivity();
+                }
             }
 
         });
@@ -124,12 +132,12 @@ public class Login extends Activity {
                 String urlstr = getString(R.string.url) + "/personnel/login";
                 String jsonResponse = null;
                 String jsonData = params[0];
-                HttpURLConnection urlConnection = null;
+                HttpsURLConnection urlConnection = null;
                 BufferedReader reader = null;
 
                 try{
                     URL url = new URL(urlstr);
-                    urlConnection = (HttpURLConnection) url.openConnection();
+                    urlConnection = (HttpsURLConnection) url.openConnection();
                     urlConnection.setDoOutput(true);
 
                     urlConnection.setRequestMethod("POST");
@@ -203,8 +211,40 @@ public class Login extends Activity {
         Intent intent = new Intent(this, LandingPageActivity.class);
         intent.putExtra("ID", userName);
         startActivity(intent);
+        finish();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        moveTaskToBack(true);
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(1);
+    }
+
+    private void requestAppPermissions() {
+        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            return;
+        }
+
+        if (hasReadPermissions() && hasWritePermissions()) {
+            return;
+        }
+
+        ActivityCompat.requestPermissions(this,
+                new String[] {
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE
+                }, REQUEST_WRITE_STORAGE_REQUEST_CODE); // your request code
+    }
+
+    private boolean hasReadPermissions() {
+        return (ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
+    }
+
+    private boolean hasWritePermissions() {
+        return (ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
+    }
 }
 
 
