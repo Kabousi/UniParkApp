@@ -39,7 +39,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="68dp"
-            android:text="Parking Name"
+            android:text="Parking Area"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -68,15 +68,15 @@
             style="@style/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="Map"
-            app:layout_constraintBottom_toTopOf="@+id/btnAddRequest"
+            app:layout_constraintBottom_toBottomOf="@+id/spnLocation"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spnParkingName"
-            app:layout_constraintVertical_bias="0.198" />
+            app:layout_constraintHorizontal_bias="0.774"
+            app:layout_constraintStart_toEndOf="@+id/spnLocation"
+            app:layout_constraintTop_toTopOf="@+id/spnLocation" />
 
         <Button
             android:id="@+id/btnAddRequest"
@@ -112,15 +112,101 @@
             android:id="@+id/spnLocation"
             android:layout_width="209dp"
             android:layout_height="45dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblLocation" />
+
+        <TextView
+            android:id="@+id/txtSelectAreaHelp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
-            app:layout_constraintEnd_toStartOf="@+id/btnMaps"
-            app:layout_constraintHorizontal_bias="0.123"
+            android:layout_marginTop="8dp"
+            android:text="Select Parking Area"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/spnParkingName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.039"
+            app:layout_constraintStart_toEndOf="@+id/lblParkingName"
+            app:layout_constraintTop_toBottomOf="@+id/lblRequestParking"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/txtSelectLocationHelp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Selsect Parking Location"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/spnLocation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/lblLocation"
+            app:layout_constraintTop_toBottomOf="@+id/spnParkingName"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/txtRequestMapsHelp"
+            android:layout_width="103dp"
+            android:layout_height="77dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:text="Press here to view parking area on Google Maps"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/spnLocation"
+            app:layout_constraintTop_toBottomOf="@+id/btnMaps" />
+
+        <TextView
+            android:id="@+id/txtSendRequestHelp"
+            android:layout_width="103dp"
+            android:layout_height="69dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Press here to request the selected parking"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnAddRequest"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblLocation" />
+            app:layout_constraintTop_toBottomOf="@+id/spnLocation"
+            app:layout_constraintVertical_bias="0.566" />
+
+        <ImageButton
+            android:id="@+id/ibtnRequestParkingHelp"
+            style="@style/button"
+            android:layout_width="43dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/decision" />
     </android.support.constraint.ConstraintLayout>
 
     <android.support.design.widget.NavigationView

@@ -1,6 +1,7 @@
 package dragoncode.unipark;
 
 import android.content.Intent;
+import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
@@ -14,7 +15,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 
@@ -22,6 +25,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
+import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -45,6 +49,12 @@ public class activity_request_parking extends AppCompatActivity implements OnIte
 
     private Button btnRequest;
     private Button btnMap;
+    private ImageButton ibtnRequestParkingHelp;
+
+    private TextView txtRequestMapsHelp;
+    private TextView txtSelectLocationHelp;
+    private TextView txtSelectAreaHelp;
+    private TextView txtRequestParkingHelp;
 
     private Spinner spnParkingName;
     private Spinner spnLocation;
@@ -58,6 +68,7 @@ public class activity_request_parking extends AppCompatActivity implements OnIte
     private ArrayList<String> location;
 
     private int count = 1;
+    private int view = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +77,12 @@ public class activity_request_parking extends AppCompatActivity implements OnIte
 
         btnMap = (Button) findViewById(R.id.btnMaps);
         btnRequest = (Button) findViewById(R.id.btnAddRequest);
+        ibtnRequestParkingHelp = (ImageButton) findViewById(R.id.ibtnRequestParkingHelp);
+
+        txtRequestMapsHelp = (TextView) findViewById(R.id.txtRequestMapsHelp);
+        txtRequestParkingHelp = (TextView) findViewById(R.id.txtSendRequestHelp);
+        txtSelectAreaHelp = (TextView) findViewById(R.id.txtSelectAreaHelp);
+        txtSelectLocationHelp = (TextView) findViewById(R.id.txtSelectLocationHelp);
 
         spnParkingName = (Spinner) findViewById(R.id.spnParkingName);
         spnLocation = (Spinner) findViewById(R.id.spnLocation);
@@ -81,6 +98,28 @@ public class activity_request_parking extends AppCompatActivity implements OnIte
         new FillAreaSpinner().execute();
 
         spnParkingName.setOnItemSelectedListener(this);
+
+        ibtnRequestParkingHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(view == 0){
+                    txtRequestMapsHelp.setVisibility(View.VISIBLE);
+                    txtRequestParkingHelp.setVisibility(View.VISIBLE);
+                    txtSelectAreaHelp.setVisibility(View.VISIBLE);
+                    txtSelectLocationHelp.setVisibility(View.VISIBLE);
+
+                    view = 1;
+                }
+                else if(view == 1){
+                    txtRequestMapsHelp.setVisibility(View.GONE);
+                    txtRequestParkingHelp.setVisibility(View.GONE);
+                    txtSelectAreaHelp.setVisibility(View.GONE);
+                    txtSelectLocationHelp.setVisibility(View.GONE);
+
+                    view = 0;
+                }
+            }
+        });
 
         btnMap.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,6 +151,12 @@ public class activity_request_parking extends AppCompatActivity implements OnIte
 
                 if(data.length() > 0){
                     new ParkingRequest().execute(String.valueOf(data));
+                    txtRequestMapsHelp.setVisibility(View.GONE);
+                    txtRequestParkingHelp.setVisibility(View.GONE);
+                    txtSelectAreaHelp.setVisibility(View.GONE);
+                    txtSelectLocationHelp.setVisibility(View.GONE);
+
+                    view = 0;
                 }
                 else{
                     Toast.makeText(activity_request_parking.this, "Please select a parking space/parking location.", Toast.LENGTH_SHORT).show();
@@ -385,7 +430,7 @@ public class activity_request_parking extends AppCompatActivity implements OnIte
             }
 
 
-            if(response.equals("\" SUCCESS \"")) {
+            if(response[0].equals(" SUCCESS ")) {
                 Toast.makeText(activity_request_parking.this, "Request Successful!", Toast.LENGTH_LONG).show();
             }
             else{

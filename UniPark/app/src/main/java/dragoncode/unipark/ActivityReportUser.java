@@ -30,6 +30,7 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -72,11 +73,17 @@ public class ActivityReportUser extends AppCompatActivity{
     private Button btnReport;
     private Button btnCamera;
 
+    private ImageButton ibtnReportHelp;
+
     private EditText txtRegNum;
     private EditText txtDesc;
 
     private TextView lblShowDesc;
     private TextView lblShowReg;
+    private TextView txtRegHelp;
+    private TextView txtDescHelp;
+    private TextView txtCameraHelp;
+    private TextView txtSubmitHelp;
 
     private ImageView imgPic;
     private Uri imageUri;
@@ -85,6 +92,7 @@ public class ActivityReportUser extends AppCompatActivity{
     private String[] details = new String[1];
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
+    private int view = 0;
 
     private Intent intent;
 
@@ -96,12 +104,18 @@ public class ActivityReportUser extends AppCompatActivity{
 
         btnReport = (Button) findViewById(R.id.btnSubmitReport);
         btnCamera = (Button) findViewById(R.id.btnCamera);
+        ibtnReportHelp = (ImageButton) findViewById(R.id.ibtnReportHelp);
 
         txtRegNum = (EditText) findViewById(R.id.txtRegistration);
         txtDesc = (EditText) findViewById(R.id.txtReportDesc);
 
         lblShowDesc = (TextView) findViewById(R.id.lblShowDesc);
         lblShowReg = (TextView) findViewById(R.id.lblShowReg);
+
+        txtRegHelp = (TextView) findViewById(R.id.txtRegHelp);
+        txtCameraHelp = (TextView) findViewById(R.id.txtCameraHelp);
+        txtDescHelp = (TextView) findViewById(R.id.txtDescHelp);
+        txtSubmitHelp = (TextView) findViewById(R.id.txtSubmitHelp);
 
         imgPic = (ImageView) findViewById(R.id.imgPic);
 
@@ -112,6 +126,28 @@ public class ActivityReportUser extends AppCompatActivity{
         mToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        ibtnReportHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(view == 0){
+                    txtCameraHelp.setVisibility(View.VISIBLE);
+                    txtDescHelp.setVisibility(View.VISIBLE);
+                    txtRegHelp.setVisibility(View.VISIBLE);
+                    txtSubmitHelp.setVisibility(View.VISIBLE);
+
+                    view = 1;
+                }
+                else if(view == 1){
+                    txtCameraHelp.setVisibility(View.GONE);
+                    txtDescHelp.setVisibility(View.GONE);
+                    txtRegHelp.setVisibility(View.GONE);
+                    txtSubmitHelp.setVisibility(View.GONE);
+
+                    view = 0;
+                }
+            }
+        });
 
         btnReport.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,6 +184,12 @@ public class ActivityReportUser extends AppCompatActivity{
                             lblShowReg.setVisibility(View.INVISIBLE);
                             imgPic.clearColorFilter();
                             imgPic.setVisibility(View.GONE);
+                            txtCameraHelp.setVisibility(View.GONE);
+                            txtDescHelp.setVisibility(View.GONE);
+                            txtRegHelp.setVisibility(View.GONE);
+                            txtSubmitHelp.setVisibility(View.GONE);
+
+                            view = 0;
                         } else {
                             Toast.makeText(ActivityReportUser.this, "Please enter details.", Toast.LENGTH_SHORT).show();
                         }

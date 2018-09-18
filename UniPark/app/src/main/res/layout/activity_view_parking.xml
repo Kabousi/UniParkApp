@@ -155,10 +155,11 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="Map"
+            app:layout_constraintBottom_toBottomOf="@+id/txtReqLocation"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/txtReqLocation"
-            app:layout_constraintTop_toBottomOf="@+id/txtAccessLevel" />
+            app:layout_constraintTop_toTopOf="@+id/txtReqLocation" />
 
         <Button
             android:id="@+id/btnRequestParking"
@@ -175,7 +176,60 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtReqLocation"
-            app:layout_constraintVertical_bias="0.563" />
+            app:layout_constraintVertical_bias="0.6" />
+
+        <ImageButton
+            android:id="@+id/ibtnParkingHelp"
+            style="@style/button"
+            android:layout_width="43dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/decision" />
+
+        <TextView
+            android:id="@+id/txtParkingMapsHelp"
+            android:layout_width="93dp"
+            android:layout_height="90dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:text="Press here to see the parking location on Google Maps"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/txtReqLocation"
+            app:layout_constraintTop_toBottomOf="@+id/btnMaps" />
+
+        <TextView
+            android:id="@+id/txtRequestHelp"
+            android:layout_width="109dp"
+            android:layout_height="55dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Press here to make a Parking Request"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnRequestParking"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtReqLocation"
+            app:layout_constraintVertical_bias="0.629" />
 
     </android.support.constraint.ConstraintLayout>
 

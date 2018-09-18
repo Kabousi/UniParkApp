@@ -14,12 +14,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -33,6 +35,10 @@ public class view_parking extends AppCompatActivity {
 
     private Button btnRequest;
     private Button btnMaps;
+    private ImageButton ibtnParkingHelp;
+
+    private TextView txtParkingMapsHelp;
+    private TextView txtRequestHelp;
 
     private EditText txtParkingName;
     private EditText txtParkingAccess;
@@ -42,7 +48,9 @@ public class view_parking extends AppCompatActivity {
     private String[] details = new String[5];
     private String[] location;
 
-     private Uri gmmIntentUri;
+    private int view = 0;
+
+    private Uri gmmIntentUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +60,11 @@ public class view_parking extends AppCompatActivity {
         txtLocation = (EditText)findViewById(R.id.txtReqLocation);
         txtParkingAccess = (EditText)findViewById(R.id.txtAccessLevel);
         txtParkingName = (EditText)findViewById(R.id.txtParkingName);
+
+        txtParkingMapsHelp = (TextView) findViewById(R.id.txtParkingMapsHelp);
+        txtRequestHelp = (TextView) findViewById(R.id.txtRequestHelp);
+
+        ibtnParkingHelp = (ImageButton) findViewById(R.id.ibtnParkingHelp);
 
         txtLocation.setEnabled(false);
         txtParkingName.setEnabled(false);
@@ -66,6 +79,24 @@ public class view_parking extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         new ParkingInfo().execute();
+
+        ibtnParkingHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(view == 0){
+                    txtParkingMapsHelp.setVisibility(View.VISIBLE);
+                    txtRequestHelp.setVisibility(View.VISIBLE);
+
+                    view = 1;
+                }
+                else if(view == 1){
+                    txtParkingMapsHelp.setVisibility(View.GONE);
+                    txtRequestHelp.setVisibility(View.GONE);
+
+                    view = 0;
+                }
+            }
+        });
 
         btnMaps = (Button) findViewById(R.id.btnMaps);
         btnMaps.setOnClickListener(new View.OnClickListener() {
@@ -85,6 +116,10 @@ public class view_parking extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openActivity();
+                txtParkingMapsHelp.setVisibility(View.GONE);
+                txtRequestHelp.setVisibility(View.GONE);
+
+                view = 0;
             }
         });
 
@@ -190,7 +225,7 @@ public class view_parking extends AppCompatActivity {
                         details[4] = object.getString("AreaCoordinate");
 
                     } catch (final JSONException e) {
-                        Toast.makeText(view_parking.this, e.toString(), Toast.LENGTH_SHORT).show();
+                        e.printStackTrace();
                     }
                 }
             return null;
@@ -199,10 +234,15 @@ public class view_parking extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void result){
             super.onPostExecute(result);
-            txtParkingName.setText(details[1]);
-            txtParkingAccess.setText(details[2]);
-            txtLocation.setText(details[3]);
-            location = details[4].split(",");
+            if(result != null){
+                txtParkingName.setText(details[1]);
+                txtParkingAccess.setText(details[2]);
+                txtLocation.setText(details[3]);
+                location = details[4].split(",");
+            }
+            else{
+                Toast.makeText(view_parking.this, "No parking assigned to user", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
@@ -210,5 +250,6 @@ public class view_parking extends AppCompatActivity {
         Intent intent = new Intent(this, activity_request_parking.class);
         intent.putExtra("ID", getIntent().getStringExtra("ID"));
         startActivity(intent);
+        finish();
     }
 }

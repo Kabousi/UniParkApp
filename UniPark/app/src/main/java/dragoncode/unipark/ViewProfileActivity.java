@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,12 +34,17 @@ import java.util.regex.Pattern;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import static android.view.View.GONE;
+
 public class ViewProfileActivity extends AppCompatActivity {
 
     private DrawerLayout mdrawerlayout;
     private ActionBarDrawerToggle mToggle;
 
     private Intent intent;
+
+    private int view = 0;
+    private boolean edit = false;
 
     private String id;
     private String name, email, phoneNummber, employeeNum;
@@ -51,8 +57,13 @@ public class ViewProfileActivity extends AppCompatActivity {
     private TextView lblShowEmail, lblEmailRequired;
     private TextView lblShowPhone, lblPhoneRequired;
     private TextView lblShowRequired;
+    private TextView txtEditHelp;
+    private TextView txtEmailHelp;
+    private TextView txtContactHelp;
+    private TextView txtUpdateHelp;
 
     private Button btnEditProfile;
+    private ImageButton ibtnProfileHelp;
 
     private NavigationView nav;
 
@@ -71,6 +82,11 @@ public class ViewProfileActivity extends AppCompatActivity {
         lblPhoneRequired = (TextView) findViewById(R.id.lblPhoneRequired);
         lblShowRequired = (TextView) findViewById(R.id.lblShowRequired);
 
+        txtContactHelp = (TextView) findViewById(R.id.txtContactHelp);
+        txtEditHelp = (TextView) findViewById(R.id.txtEditHelp);
+        txtEmailHelp = (TextView) findViewById(R.id.txtEmalHelp);
+        txtUpdateHelp = (TextView) findViewById(R.id.txtUpdateHelp);
+
         lblEmailRequired.setVisibility(View.INVISIBLE);
         lblPhoneRequired.setVisibility(View.INVISIBLE);
         lblShowRequired.setVisibility(View.INVISIBLE);
@@ -85,6 +101,35 @@ public class ViewProfileActivity extends AppCompatActivity {
         mToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        ibtnProfileHelp = (ImageButton) findViewById(R.id.ibtnProfileHelp);
+        ibtnProfileHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(view == 0 && edit == false){
+                    txtEditHelp.setVisibility(View.VISIBLE);
+                    view = 1;
+                }
+                else if(view == 1 && edit == false){
+                    txtEditHelp.setVisibility(GONE);
+                    view = 0;
+                }
+                else if(view == 0 && edit == true){
+                    txtContactHelp.setVisibility(View.VISIBLE);
+                    txtEmailHelp.setVisibility(View.VISIBLE);
+                    txtUpdateHelp.setVisibility(View.VISIBLE);
+
+                    view = 1;
+                }
+                else if(view == 1 && edit == true){
+                    txtContactHelp.setVisibility(View.GONE);
+                    txtEmailHelp.setVisibility(View.GONE);
+                    txtUpdateHelp.setVisibility(View.GONE);
+
+                    view = 0;
+                }
+            }
+        });
 
         btnEditProfile = (Button) findViewById(R.id.btn_editProfile);
         btnEditProfile.setOnClickListener(new View.OnClickListener() {
@@ -103,6 +148,9 @@ public class ViewProfileActivity extends AppCompatActivity {
                     lblPhoneRequired.setVisibility(View.VISIBLE);
                     lblShowRequired.setVisibility(View.VISIBLE);
 
+                    txtEditHelp.setVisibility(GONE);
+                    edit = true;
+
                     btnEditProfile.setText("Update");
                 }
                 else if(btnEditProfile.getText().equals("Update")){
@@ -113,6 +161,12 @@ public class ViewProfileActivity extends AppCompatActivity {
 
                     lblShowPhone.setVisibility(View.INVISIBLE);
                     lblShowEmail.setVisibility(View.INVISIBLE);
+
+                    txtContactHelp.setVisibility(View.GONE);
+                    txtEmailHelp.setVisibility(View.GONE);
+                    txtUpdateHelp.setVisibility(View.GONE);
+
+                    edit = false;
 
                     name = Name.getText().toString();
                     email = Email.getText().toString();

@@ -18,6 +18,8 @@ import android.text.Layout;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class LandingPageActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -27,6 +29,16 @@ public class LandingPageActivity extends AppCompatActivity implements View.OnCli
     private Button btnViewParking;
     private Button btnReportUser;
     private Button btnMaps;
+
+    private ImageButton ibtnHelp;
+
+    private TextView txtProfileHelp;
+    private TextView txtParkingHelp;
+    private TextView txtReportHelp;
+    private TextView txtMapsHelp;
+
+    int view = 0;
+
     private NavigationView nav;
 
     private Intent intent;
@@ -51,10 +63,18 @@ public class LandingPageActivity extends AppCompatActivity implements View.OnCli
         btnReportUser = (Button) findViewById(R.id.btn_report);
         btnMaps = (Button) findViewById(R.id.btn_maps);
 
+        ibtnHelp = (ImageButton) findViewById(R.id.ibtnHelp);
+
+        txtMapsHelp = (TextView) findViewById(R.id.txtMapsHelp);
+        txtParkingHelp = (TextView) findViewById(R.id.txtParkingHelp);
+        txtProfileHelp = (TextView) findViewById(R.id.txtProfileHelp);
+        txtReportHelp = (TextView) findViewById(R.id.txtReportHelp);
+
         btnViewProfile.setOnClickListener(this);
         btnMaps.setOnClickListener(this);
         btnReportUser.setOnClickListener(this);
         btnViewParking.setOnClickListener(this);
+        ibtnHelp.setOnClickListener(this);
 
         nav = (NavigationView) findViewById(R.id.nav_landingPage);
 
@@ -150,12 +170,28 @@ public class LandingPageActivity extends AppCompatActivity implements View.OnCli
                 break;
 
             case R.id.btn_maps:
-
                 intent = new Intent(Intent.ACTION_VIEW);
                 intent.setPackage("com.google.android.apps.maps");
                 if(intent.resolveActivity(getPackageManager()) != null)
                 startActivity(intent);
                 break;
-                        }
+
+            case R.id.ibtnHelp:
+                if(view == 0){
+                    txtReportHelp.setVisibility(View.VISIBLE);
+                    txtProfileHelp.setVisibility(View.VISIBLE);
+                    txtMapsHelp.setVisibility(View.VISIBLE);
+                    txtParkingHelp.setVisibility(View.VISIBLE);
+                    view = 1;
+                }
+                else if(view == 1){
+                    txtReportHelp.setVisibility(View.GONE);
+                    txtProfileHelp.setVisibility(View.GONE);
+                    txtMapsHelp.setVisibility(View.GONE);
+                    txtParkingHelp.setVisibility(View.GONE);
+                    view = 0;
+                }
+                break;
+        }
     }
 }

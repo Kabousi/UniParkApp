@@ -81,6 +81,96 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_report" />
+
+        <TextView
+            android:id="@+id/txtProfileHelp"
+            android:layout_width="103dp"
+            android:layout_height="54dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Press here to view and update your profile"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btn_profile"
+            app:layout_constraintTop_toTopOf="@+id/btn_profile" />
+
+        <TextView
+            android:id="@+id/txtParkingHelp"
+            android:layout_width="115dp"
+            android:layout_height="53dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Press here to View and request a parking spot"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_parking"
+            app:layout_constraintEnd_toStartOf="@+id/btn_parking"
+            app:layout_constraintHorizontal_bias="0.428"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btn_parking"
+            app:layout_constraintVertical_bias="0.421" />
+
+        <TextView
+            android:id="@+id/txtReportHelp"
+            android:layout_width="95dp"
+            android:layout_height="41dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Press here to Report a User"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_report"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btn_report"
+            app:layout_constraintTop_toTopOf="@+id/btn_report" />
+
+        <TextView
+            android:id="@+id/txtMapsHelp"
+            android:layout_width="99dp"
+            android:layout_height="56dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Press here to open Google Maps"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_maps"
+            app:layout_constraintEnd_toStartOf="@+id/btn_maps"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btn_maps" />
+
+        <ImageButton
+            android:id="@+id/ibtnHelp"
+            style="@style/button"
+            android:layout_width="43dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/decision" />
+
     </android.support.constraint.ConstraintLayout>
 
 

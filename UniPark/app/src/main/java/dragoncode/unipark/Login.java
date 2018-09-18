@@ -84,6 +84,7 @@ public class Login extends Activity {
             @Override
             public void onClick(View v) {
 
+
                 String facilityNo ="s" + txtUserName.getText().toString();
                 String password = txtPassword.getText().toString();
                 JSONObject data = new JSONObject();
@@ -99,21 +100,29 @@ public class Login extends Activity {
                 if(data.length() > 0){
                     login task = new login();
                     task.execute(String.valueOf(data));
+                    progressBar.setVisibility(View.VISIBLE);
+                    btnLogin.setVisibility(View.INVISIBLE);
                 }
                 else if(txtUserName.getText().toString().equals("") && txtPassword.getText().toString().equals("")){
                     Toast.makeText(Login.this, "Please enter user details.", Toast.LENGTH_SHORT).show();
                     showPassword.setVisibility(View.VISIBLE);
                     showUserName.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.INVISIBLE);
+                    btnLogin.setVisibility(View.VISIBLE);
                 }
                 else if(txtUserName.getText().toString().equals("")){
                     Toast.makeText(Login.this, "Please enter student/staff number.", Toast.LENGTH_SHORT).show();
                     showUserName.setVisibility(View.VISIBLE);
                     showPassword.setVisibility(View.INVISIBLE);
+                    progressBar.setVisibility(View.INVISIBLE);
+                    btnLogin.setVisibility(View.VISIBLE);
                 }
                 else if(txtPassword.getText().toString().equals("")){
                     Toast.makeText(Login.this, "Please enter password", Toast.LENGTH_SHORT).show();
                     showPassword.setVisibility(View.VISIBLE);
                     showUserName.setVisibility(View.INVISIBLE);
+                    progressBar.setVisibility(View.INVISIBLE);
+                    btnLogin.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -185,7 +194,6 @@ public class Login extends Activity {
 
             @Override
             protected void onPostExecute(String jsonResponse){
-                progressBar.setVisibility(View.GONE);
                 String response = jsonResponse;
                 if(jsonResponse != null){
                     if(response.equals("\"Login Successful!\"")) {
