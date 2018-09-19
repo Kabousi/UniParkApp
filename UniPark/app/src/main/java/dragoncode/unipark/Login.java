@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -39,12 +40,15 @@ import javax.net.ssl.HttpsURLConnection;
 public class Login extends Activity {
 
     private Button btnLogin;
+    private Button btnForgotPassword;
     private EditText txtUserName;
     private EditText txtPassword;
     private TextView showUserName, showPassword;
     private ProgressBar progressBar;
 
     private final int REQUEST_WRITE_STORAGE_REQUEST_CODE = 1;
+
+    private Uri uri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,12 +77,22 @@ public class Login extends Activity {
         }*/
 
         btnLogin = (Button) findViewById(R.id.btnLogin);
+        btnForgotPassword = (Button) findViewById(R.id.btnForgotPassword);
         txtUserName = (EditText) findViewById(R.id.txtUserName);
         txtPassword = (EditText) findViewById(R.id.txtPassword);
         showUserName = (TextView) findViewById(R.id.lblShowUsername);
         showPassword = (TextView) findViewById(R.id.lblShowPassword);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
+
+        btnForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                uri = Uri.parse("https://eagleeye25.github.io/UniPark-Web/forgot-password");
+                Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(launchBrowser);
+            }
+        });
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override

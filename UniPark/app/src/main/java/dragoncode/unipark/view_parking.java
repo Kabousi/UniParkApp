@@ -43,9 +43,10 @@ public class view_parking extends AppCompatActivity {
     private EditText txtParkingName;
     private EditText txtParkingAccess;
     private EditText txtLocation;
+    private EditText txtParkingSpaceLocation;
 
     private String id;
-    private String[] details = new String[5];
+    private String[] details = new String[6];
     private String[] location;
 
     private int view = 0;
@@ -60,6 +61,7 @@ public class view_parking extends AppCompatActivity {
         txtLocation = (EditText)findViewById(R.id.txtReqLocation);
         txtParkingAccess = (EditText)findViewById(R.id.txtAccessLevel);
         txtParkingName = (EditText)findViewById(R.id.txtParkingName);
+        txtParkingSpaceLocation = (EditText)findViewById(R.id.txtParkingSpaceLocation);
 
         txtParkingMapsHelp = (TextView) findViewById(R.id.txtParkingMapsHelp);
         txtRequestHelp = (TextView) findViewById(R.id.txtRequestHelp);
@@ -69,6 +71,7 @@ public class view_parking extends AppCompatActivity {
         txtLocation.setEnabled(false);
         txtParkingName.setEnabled(false);
         txtParkingAccess.setEnabled(false);
+        txtParkingSpaceLocation.setEnabled(false);
 
         mdrawerlayout = (DrawerLayout) findViewById(R.id.view_parking);
         mToggle = new ActionBarDrawerToggle(this, mdrawerlayout, R.string.Open, R.string.Close);
@@ -223,6 +226,7 @@ public class view_parking extends AppCompatActivity {
                         details[2] = object.getString("ParkingAccessLevel");
                         details[3] = object.getString("Location");
                         details[4] = object.getString("AreaCoordinate");
+                        details[5] = object.getString("ParkingSpaceNumber");
 
                     } catch (final JSONException e) {
                         e.printStackTrace();
@@ -234,8 +238,9 @@ public class view_parking extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void result){
             super.onPostExecute(result);
-            if(result != null){
+            if(details.length > 0){
                 txtParkingName.setText(details[1]);
+                txtParkingSpaceLocation.setText(details[5]);
                 txtParkingAccess.setText(details[2]);
                 txtLocation.setText(details[3]);
                 location = details[4].split(",");
