@@ -110,12 +110,13 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
                     android:layout_marginStart="8dp"
-                    android:ems="10"
-                    android:inputType="textPersonName"
+                    android:maxLength="10"
+                    android:inputType="textAutoCorrect|textAutoComplete|textPersonName|number"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/lblPhoneNum" />
+                    app:layout_constraintTop_toBottomOf="@+id/lblPhoneNum"
+                    tools:maxLength="10" />
 
                 <TextView
                     android:id="@+id/lblEmail"

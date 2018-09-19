@@ -57,25 +57,6 @@ public class Login extends Activity {
 
         requestAppPermissions();
 
-       /* boolean connected;
-        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-        if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
-                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
-            connected = true;
-        }
-        else
-            connected = false;
-
-        if(connected == false){
-            Toast.makeText(Login.this, "Check Internet Connection.", Toast.LENGTH_LONG).show();
-            txtUserName.setEnabled(false);
-            txtPassword.setEnabled(false);
-        }
-        else{
-            txtUserName.setEnabled(true);
-            txtPassword.setEnabled(true);
-        }*/
-
         btnLogin = (Button) findViewById(R.id.btnLogin);
         btnForgotPassword = (Button) findViewById(R.id.btnForgotPassword);
         txtUserName = (EditText) findViewById(R.id.txtUserName);
@@ -220,10 +201,11 @@ public class Login extends Activity {
                 }
                 else {
                     Toast.makeText(Login.this, "Invalid Username/Password", Toast.LENGTH_LONG).show();
-                    txtUserName.setText("");
                     txtPassword.setText("");
                     showUserName.setVisibility(View.INVISIBLE);
                     showPassword.setVisibility(View.INVISIBLE);
+                    progressBar.setVisibility(View.INVISIBLE);
+                    btnLogin.setVisibility(View.VISIBLE);
                 }
             }
         }
@@ -249,14 +231,15 @@ public class Login extends Activity {
             return;
         }
 
-        if (hasReadPermissions() && hasWritePermissions()) {
+        if (hasReadPermissions() && hasWritePermissions() && hasCameraPermissions()) {
             return;
         }
 
         ActivityCompat.requestPermissions(this,
                 new String[] {
                         Manifest.permission.READ_EXTERNAL_STORAGE,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.CAMERA
                 }, REQUEST_WRITE_STORAGE_REQUEST_CODE); // your request code
     }
 
@@ -266,6 +249,10 @@ public class Login extends Activity {
 
     private boolean hasWritePermissions() {
         return (ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
+    }
+
+    private boolean hasCameraPermissions(){
+        return(ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED);
     }
 }
 

@@ -65,6 +65,7 @@ public class activity_request_parking extends AppCompatActivity implements OnIte
     private String[] pArea;
     private String[] pLocation;
     private String[] coordinates;
+    String[] newLocation;
     private ArrayList<String> location;
 
     private int count = 1;
@@ -244,7 +245,7 @@ public class activity_request_parking extends AppCompatActivity implements OnIte
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         new FillLocationSpinner().execute();
-        coordinates = pLocation[position].split(",");
+        coordinates = newLocation[position].split(",");
     }
 
     @Override
@@ -297,14 +298,17 @@ public class activity_request_parking extends AppCompatActivity implements OnIte
                 }
             }
             String[] fill = new String[count];
+            newLocation = new String[count];
 
             int i = 1;
 
             fill[0] = pArea[0];
+            newLocation[0] = pLocation[0];
 
                 for(int x = 0; x < pArea.length; x++) {
                     if (!fill[i-1].equals(pArea[x])) {
                         fill[i] = pArea[x];
+                        newLocation[i] = pLocation[x];
                         i++;
                     }
                 }
@@ -432,6 +436,10 @@ public class activity_request_parking extends AppCompatActivity implements OnIte
 
             if(response[0].equals(" SUCCESS ")) {
                 Toast.makeText(activity_request_parking.this, "Request Successful!", Toast.LENGTH_LONG).show();
+                intent = new Intent(activity_request_parking.this, dragoncode.unipark.LandingPageActivity.class);
+                intent.putExtra("ID", id);
+                startActivity(intent);
+                finish();
             }
             else{
                 Toast.makeText(activity_request_parking.this, "Request Unsuccessful!", Toast.LENGTH_LONG).show();
