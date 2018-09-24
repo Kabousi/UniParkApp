@@ -238,7 +238,7 @@ public class view_parking extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void result){
             super.onPostExecute(result);
-            if(details.length > 0){
+            if(!details[0].equals("")){
                 txtParkingName.setText(details[1]);
                 txtParkingSpaceLocation.setText(details[5]);
                 txtParkingAccess.setText(details[2]);
@@ -246,6 +246,11 @@ public class view_parking extends AppCompatActivity {
                 location = details[4].split(",");
             }
             else{
+                txtParkingName.setText(details[1]);
+                txtParkingSpaceLocation.setText(details[5]);
+                txtParkingAccess.setText(details[2]);
+                txtLocation.setText(details[3]);
+                btnMaps.setEnabled(false);
                 Toast.makeText(view_parking.this, "No parking assigned to user", Toast.LENGTH_SHORT).show();
             }
         }

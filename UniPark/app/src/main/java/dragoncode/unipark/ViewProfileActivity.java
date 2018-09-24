@@ -172,9 +172,10 @@ public class ViewProfileActivity extends AppCompatActivity {
                     email = Email.getText().toString();
                     phoneNummber = PhoneNum.getText().toString();
                     employeeNum = "s" + getIntent().getStringExtra("ID");
-                    JSONObject data = new JSONObject();
 
                     String[] parts = email.split("@");
+                    String SecondPart = parts[1];
+                    String[] sParts = SecondPart.split("\\.");
 
                     Pattern p;
                     Matcher m;
@@ -197,6 +198,13 @@ public class ViewProfileActivity extends AppCompatActivity {
                             Email.setEnabled(true);
                             lblShowEmail.setText("Invalid Format*");
                         }
+                        else if(sParts.length < 2){
+                            lblShowEmail.setVisibility(View.VISIBLE);
+                            Toast.makeText(ViewProfileActivity.this, "Invalid email format!", Toast.LENGTH_LONG).show();
+                            PhoneNum.setEnabled(true);
+                            Email.setEnabled(true);
+                            lblShowEmail.setText("Invalid Format*");
+                        }
                         else if(email.length() == 0){
                             Toast.makeText(ViewProfileActivity.this, "Please enter Email.", Toast.LENGTH_LONG).show();
                             lblEmailRequired.setVisibility(View.VISIBLE);
@@ -205,57 +213,38 @@ public class ViewProfileActivity extends AppCompatActivity {
                             lblShowEmail.setText("Enter Email*");
                             lblShowEmail.setVisibility(View.VISIBLE);
                         }
-                        else if(fpart != true && spart != true && email.length() > 0){
+                        else if(ppart == true){
+                            lblShowPhone.setVisibility(View.VISIBLE);
+                            Toast.makeText(ViewProfileActivity.this, "Invalid Phone Number Format!", Toast.LENGTH_LONG).show();
+                            PhoneNum.setEnabled(true);
+                            Email.setEnabled(true);
+                        }
+                        else if(phoneNummber.length() == 0){
+                            Toast.makeText(ViewProfileActivity.this, "Please enter Contact number.", Toast.LENGTH_LONG).show();
+                            lblPhoneRequired.setVisibility(View.VISIBLE);
+                            PhoneNum.setEnabled(true);
+                            Email.setEnabled(true);
+                        }
+                        else if(phoneNummber.length() > 10){
+                            Toast.makeText(ViewProfileActivity.this, "Contact number too Long. Please Enter Contact number.", Toast.LENGTH_LONG).show();
+                            lblShowPhone.setVisibility(View.VISIBLE);
+                            PhoneNum.setEnabled(true);
+                            Email.setEnabled(true);
+                        }
+                        else if(phoneNummber.length() < 10){
+                            Toast.makeText(ViewProfileActivity.this, "Contact number too Short. Please Enter Contact number.", Toast.LENGTH_LONG).show();
+                            lblShowPhone.setVisibility(View.VISIBLE);
+                            PhoneNum.setEnabled(true);
+                            Email.setEnabled(true);
+                        }
+                        else{
                             lblEmailRequired.setVisibility(View.INVISIBLE);
                             lblShowEmail.setVisibility(View.INVISIBLE);
                             lblShowEmail.setText("Invalid Format*");
+                            UpdateProfile(employeeNum, email, phoneNummber);
                         }
-
-                        if(ppart == true){
-                                lblShowPhone.setVisibility(View.VISIBLE);
-                                Toast.makeText(ViewProfileActivity.this, "Invalid Phone Number Format!", Toast.LENGTH_LONG).show();
-                                PhoneNum.setEnabled(true);
-                                Email.setEnabled(true);
-                            }
-                            else if(phoneNummber.length() == 0){
-                                Toast.makeText(ViewProfileActivity.this, "Please enter Contact number.", Toast.LENGTH_LONG).show();
-                                lblPhoneRequired.setVisibility(View.VISIBLE);
-                                PhoneNum.setEnabled(true);
-                                Email.setEnabled(true);
-                            }
-                            else if(phoneNummber.length() > 10){
-                                Toast.makeText(ViewProfileActivity.this, "Contact number too Long. Please Enter Contact number.", Toast.LENGTH_LONG).show();
-                                lblShowPhone.setVisibility(View.VISIBLE);
-                                PhoneNum.setEnabled(true);
-                                Email.setEnabled(true);
-                            }
-                            else if(phoneNummber.length() < 10){
-                                Toast.makeText(ViewProfileActivity.this, "Contact number too Short. Please Enter Contact number.", Toast.LENGTH_LONG).show();
-                                lblShowPhone.setVisibility(View.VISIBLE);
-                                PhoneNum.setEnabled(true);
-                                Email.setEnabled(true);
-                            }
-                            else{
-                                lblPhoneRequired.setVisibility(View.INVISIBLE);
-                                lblShowPhone.setVisibility(View.INVISIBLE);
-                                try{
-                                    data.put("PersonnelID", employeeNum);
-                                    data.put("PersonnelPhoneNumber", phoneNummber);
-                                    data.put("PersonnelEmail", email);
-                                }
-                                catch (JSONException e){
-                                    e.printStackTrace();
-                                }
-
-                                if(data.length() > 0){
-                                    new UpdateUserInfo().execute(String.valueOf(data));
-                                }
-                                else{
-                                    Toast.makeText(ViewProfileActivity.this, "Please enter details.", Toast.LENGTH_SHORT).show();
-                                }
-                            }
                     }
-                    else{
+                    else if(parts.length < 2){
                         Toast.makeText(ViewProfileActivity.this, "Invalid email format!", Toast.LENGTH_SHORT).show();
                         lblShowEmail.setVisibility(View.VISIBLE);
                         PhoneNum.setEnabled(true);
@@ -350,6 +339,28 @@ public class ViewProfileActivity extends AppCompatActivity {
         intent.putExtra("ID", id);
         startActivity(intent);
         finish();
+    }
+
+    public void UpdateProfile(String employeeNum, String email, String contactNum){
+        lblPhoneRequired.setVisibility(View.INVISIBLE);
+        lblShowPhone.setVisibility(View.INVISIBLE);
+        JSONObject data = new JSONObject();
+
+        try{
+            data.put("PersonnelID", employeeNum);
+            data.put("PersonnelPhoneNumber", contactNum);
+            data.put("PersonnelEmail", email);
+        }
+        catch (JSONException e){
+            e.printStackTrace();
+        }
+
+        if(data.length() > 0){
+            new UpdateUserInfo().execute(String.valueOf(data));
+        }
+        else{
+            Toast.makeText(ViewProfileActivity.this, "Please enter details.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     class GetPersonDetails extends AsyncTask<Void, Void, Void> {

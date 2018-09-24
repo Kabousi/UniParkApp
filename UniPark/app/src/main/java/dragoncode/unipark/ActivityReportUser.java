@@ -84,6 +84,7 @@ public class ActivityReportUser extends AppCompatActivity{
     private TextView txtDescHelp;
     private TextView txtCameraHelp;
     private TextView txtSubmitHelp;
+    private TextView txtTextRec;
 
     private ImageView imgPic;
     private Uri imageUri;
@@ -116,6 +117,7 @@ public class ActivityReportUser extends AppCompatActivity{
         txtCameraHelp = (TextView) findViewById(R.id.txtCameraHelp);
         txtDescHelp = (TextView) findViewById(R.id.txtDescHelp);
         txtSubmitHelp = (TextView) findViewById(R.id.txtSubmitHelp);
+        txtTextRec = (TextView) findViewById(R.id.txtTextRec);
 
         imgPic = (ImageView) findViewById(R.id.imgPic);
 
@@ -329,6 +331,13 @@ public class ActivityReportUser extends AppCompatActivity{
                     newStr = newStr + oldStr[i];
                 }
                 txtRegNum.setText(newStr);
+
+                if(newStr.equals("")){
+                    txtTextRec.setVisibility(View.VISIBLE);
+                }
+                else{
+                    txtTextRec.setVisibility(View.GONE);
+                }
             }
         }
     }
